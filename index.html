@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Future AI Brief</title>
-  <meta name="description" content="Concepts, platforms, and signals at the intersection of AI, automation, and future utilities." />
+  <meta name="description" content="Future AI Brief explores practical AI applications, thoughtful web design, and early-stage AI product concepts focused on real-world solutions." />
+
 
   <!-- Tailwind via CDN (ingen build) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -78,7 +79,7 @@
 <body class="min-h-screen bg-neutral-950 text-neutral-100">
   <!-- Top bar -->
   <header id="top" class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
-  <div class="max-w-7xl mx-auto px-5 py-5 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
 
     <!-- LOGO (venstre) -->
     <a href="#top" class="flex items-center">
@@ -101,27 +102,12 @@
 </header>
 
 
-      </div>
-
-      <!-- Desktop nav -->
-      <nav class="hidden items-center gap-3 md:flex">
-        <a class="nav-btn" href="#projects">Projects</a>
-        <a class="nav-btn" href="#ambitions">Ambitions</a>
-        <a class="nav-btn" href="#focus">Focus</a>
-        <a class="nav-btn" href="#contact">Contact</a>
-      </nav>
-
-      <!-- Mobile nav (simple) -->
-      <nav class="flex items-center gap-2 md:hidden">
-        <a class="nav-btn" href="#projects">Projects</a>
-        <a class="nav-btn" href="#ambitions">Ambitions</a>
-      </nav>
-    </div>
-  </header>
+      
 
   <main class="relative">
     <!-- HERO med shader -->
-    <section class="relative w-full h-[calc(100vh-73px)] overflow-hidden bg-black">
+    <section class="relative w-full h-[calc(100vh-73px)] overflow-hidden bg-black pt-24">
+
       <canvas id="shader-canvas" class="absolute inset-0 h-full w-full"></canvas>
 
       <!-- lesbarhets-overlay -->
@@ -135,10 +121,7 @@
           Concepts, platforms, and signals for the next decade of AI.
         </h1>
 
-        <p class="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-white/70 md:text-lg">
-          Future AI Brief is a lightweight hub for experiments, product concepts, and practical notes —
-          exploring where AI, automation, and future utilities meet.
-        </p>
+    
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#projects"
@@ -188,37 +171,37 @@
   <div class="group relative mt-3 max-w-2xl pl-6">
     <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
     <p class="leading-relaxed text-white/75">
-      I take on commissioned work in web development and application design, creating practical solutions built for
-      real-world use. This includes websites, web applications, and custom tools designed to bring clarity to complex
-      or inefficient workflows. Based in Norway, available for both local and remote projects.
-    </p>
+  I focus on practical AI applications, thoughtful web design, and early-stage AI product concepts,
+  building websites, web applications, and custom tools designed for real-world use.
+  The goal is to turn ideas into clear, usable systems -not demos or hype.
+</p>
+
   </div>
 
   <!-- Cards -->
   <div class="mt-8 grid gap-4 md:grid-cols-2">
     <article class="info-card">
-      <div class="text-sm font-semibold text-white">Web development</div>
+      <h3 class="text-sm font-semibold text-white">Practical AI applications</h3>
       <div class="mt-2 text-sm text-white/70">
-        Modern static sites and landing pages with clean UX, fast load times, and simple maintainability.
+        Real-world AI use cases - applied, testable, and built to be used.
       </div>
     </article>
 
     <article class="info-card">
-      <div class="text-sm font-semibold text-white">Apps &amp; web apps</div>
+      <h3 class="text-sm font-semibold text-white">Web design that ships</h3>
       <div class="mt-2 text-sm text-white/70">
-        Practical tools: dashboards, internal systems, and small platforms — built mobile-first when it matters.
+        Clean landing pages and web apps with fast UX, clarity, and maintainability
       </div>
     </article>
 
     <article class="info-card">
-      <div class="text-sm font-semibold text-white">Product thinking</div>
+      <h3 class="text-sm font-semibold text-white">AI product concepts</h3>
       <div class="mt-2 text-sm text-white/70">
-        Clear problem framing, MVP scope, and iteration loops — shipping early and refining with feedback.
-      </div>
+        Early-stage ideas, prototypes, and platforms - scoped like real products
     </article>
 
     <article class="info-card">
-      <div class="text-sm font-semibold text-white">Current direction</div>
+      <h3 class="text-sm font-semibold text-white">Current direction</h3>
       <div class="mt-2 text-sm text-white/70">
         Building a small portfolio of concepts and prototypes — marketplaces, operations tooling, and future utilities.
       </div>
@@ -263,14 +246,34 @@
 
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
             <a class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90"
-               href="mailto:hello@futureaibrief.xyz">
+               href="mailto:kewinolaisen@yahoo.no">
               Email
             </a>
-            <a class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
-               href="#"
-               onclick="alert('Legg inn LinkedIn/X senere 🙂'); return false;">
-              Social (later)
-            </a>
+           <a
+  href=https://www.linkedin.com/in/kewin-olaisen-287204338/
+  target="_blank"
+  rel="noopener noreferrer"
+  class="nav-btn inline-flex items-center gap-2"
+  aria-label="LinkedIn profile"
+>
+  <img src="linkedin.png" alt="LinkedIn" class="h-5 w-5" />
+  <span>LinkedIn</span>
+</a>
+
+ <!-- Substack -->
+  <a
+    href=https://substack.com/@kewinolaisen?
+    target="_blank"
+    rel="noopener noreferrer"
+    class="nav-btn inline-flex items-center gap-2"
+    aria-label="Substack"
+  >
+    <img src="substack.png" alt="Substack" class="h-4 w-4" />
+    <span>Substack</span>
+  </a>
+</div>
+
+
           </div>
 
           <div class="mt-6 text-xs text-white/50">
@@ -281,11 +284,16 @@
 
       <footer class="border-t border-white/10 py-10">
         <div class="mx-auto max-w-6xl px-5 text-sm text-white/50">
-           © <span id="y"></span> Future AI Brief. All rights reserved.
+           © <span id="y"></span> FutureBrief. All rights reserved.
         </div>
-        <div>
-            Made by Kewin with experiments in WebGL2 and Three.js.
-        </div>
+        <div class="mt-10 text-xs text-white/40 flex items-center gap-2">
+  <span class="opacity-60">✦</span>
+  <span>
+    Built by <span class="text-white/70 font-medium">Kewin</span> ·
+    WebGL2 & Three.js experiments
+  </span>
+</div>
+
       </footer>
     </section>
   </main>
