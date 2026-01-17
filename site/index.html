@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <title>Future AI Brief</title>
+  <meta name="description" content="Future AI Brief explores practical AI applications, thoughtful web design, and early-stage AI product concepts focused on real-world solutions." />
+
+  <!-- SEO: canonical + hreflang -->
+  <link rel="canonical" href="/" />
+  <link rel="alternate" hreflang="en" href="/"/>
+  <link rel="alternate" hreflang="no" href="/no.html"/>
+  <link rel="alternate" hreflang="x-default" href="/"/>
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Future AI Brief" />
+  <meta property="og:description" content="Concepts, platforms, and signals for the next decade of AI." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind via CDN (no build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    canvas { touch-action: none; }
+    html { scroll-behavior: smooth; }
+
+    /* Menu buttons: white border, black center, white text, hover-lift */
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border:2px solid rgba(255,255,255,.9);
+      border-radius:9999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.95);
+      font-size:.85rem;
+      font-weight:700;
+      letter-spacing:.2px;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,1);
+    }
+    .nav-btn:active{ transform: translateY(0); }
+
+    .nav-btn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35);
+    }
+
+    /* Anchor offset for sticky header */
+    .anchor-offset { scroll-margin-top: 90px; }
+
+    /* Reusable light card + pop hover */
+    .info-card{
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .info-card:hover{
+      transform: translateY(-6px) scale(1.01);
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-neutral-950 text-neutral-100">
+  <!-- Top bar -->
+  <header id="top" class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
+
+      <!-- LOGO (left) -->
+      <a href="#top" class="flex items-center">
+        <img
+          src="assets/logo.png"
+          alt="Future AI Brief logo"
+          class="h-16 w-auto"
+        />
+      </a>
+
+      <!-- MENU (right) -->
+      <nav class="flex gap-3 items-center">
+        <a class="nav-btn" href="#projects">Projects</a>
+        <a class="nav-btn" href="#ambitions">Ambitions</a>
+        <a class="nav-btn" href="#focus">Focus</a>
+        <a class="nav-btn" href="#contact">Contact</a>
+
+        <!-- Language switch -->
+        <a class="nav-btn" href="no.html" aria-label="Switch to Norwegian">NO</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="relative">
+    <!-- HERO with shader -->
+    <section class="relative w-full h-[calc(100vh-73px)] overflow-hidden bg-black pt-24">
+      <canvas id="shader-canvas" class="absolute inset-0 h-full w-full"></canvas>
+
+      <!-- readability overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65"></div>
+
+      <!-- Hero content -->
+      <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-5 pb-16 pt-14 md:pb-24 md:pt-20">
+        <h1 class="text-balance text-4xl font-semibold leading-tight md:text-6xl">
+          Concepts, platforms, and signals for the next decade of AI.
+        </h1>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#projects"
+             class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90">
+            Explore projects
+          </a>
+          <a href="#ambitions"
+             class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10">
+            See ambitions
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Clear thinking</div>
+            <div class="mt-1 text-sm text-white/65">Short briefs, no hype. Just useful structure.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Build-first</div>
+            <div class="mt-1 text-sm text-white/65">Prototypes, landing pages, and proof-of-work.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Future utility</div>
+            <div class="mt-1 text-sm text-white/65">Marketplaces, energy, and real-world systems.</div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-xs text-white/50">
+          Tip: Move the mouse (or touch) on the hero background.
+        </div>
+      </div>
+    </section>
+
+    <!-- LOWER AREA WRAPPER (dotted surface background) -->
+    <section class="relative overflow-hidden">
+      <!-- Dotted Surface Canvas layer -->
+      <div id="dotted-surface" class="pointer-events-none absolute inset-0 -z-10"></div>
+
+      <!-- subtle dark overlay -->
+      <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-neutral-950/55 via-neutral-950/70 to-neutral-950"></div>
+
+      <!-- Ambitions -->
+      <section id="ambitions" class="anchor-offset mx-auto max-w-6xl px-5 pb-20 pt-14">
+        <h2 class="text-2xl font-semibold md:text-3xl">Ambitions</h2>
+
+        <div class="group relative mt-3 max-w-2xl pl-6">
+          <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
+          <p class="leading-relaxed text-white/75">
+            I focus on practical AI applications, thoughtful web design, and early-stage AI product concepts,
+            building websites, web applications, and custom tools designed for real-world use.
+            The goal is to turn ideas into clear, usable systems — not demos or hype.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Practical AI applications</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Real-world AI use cases — applied, testable, and built to be used.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Web design that ships</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Clean landing pages and web apps with fast UX, clarity, and maintainability.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">AI product concepts</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Early-stage ideas, prototypes, and platforms — scoped like real products.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Current direction</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Building a small portfolio of concepts and prototypes — marketplaces, operations tooling, and future utilities.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Projects</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          A few active threads. This list will evolve.
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Sharge Share</div>
+            <div class="mt-2 text-sm text-white/65">P2P home-charging marketplace concept.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Draft / Partner outreach</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Crew-post</div>
+            <div class="mt-2 text-sm text-white/65">Internal handover notes for restaurant operations.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Prototype</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Future briefs</div>
+            <div class="mt-2 text-sm text-white/65">Short notes on tools, patterns, and strategy.</div>
+            <div class="mt-4 text-xs text-white/50">Status: In progress</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Focus (added so the menu link works) -->
+      <section id="focus" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Focus</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          I care about clarity, usefulness, and shipping. A few guiding principles:
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Signal over noise</div>
+            <div class="mt-2 text-sm text-white/65">Reduce complexity. Keep the core understandable.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Systems that run</div>
+            <div class="mt-2 text-sm text-white/65">Practical tools with real workflows in mind.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Iterate fast</div>
+            <div class="mt-2 text-sm text-white/65">Small releases, learning loops, and continuous improvement.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="anchor-offset mx-auto max-w-6xl px-5 pb-24">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-10">
+          <h2 class="text-2xl font-semibold md:text-3xl">Contact</h2>
+          <p class="mt-3 max-w-2xl text-white/70">
+            Want to collaborate, give feedback, or just say hi? Send a message.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90"
+               href="mailto:kewinolaisen@yahoo.no">
+              Email
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/kewin-olaisen-287204338/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="LinkedIn profile"
+            >
+              <img src="assets/linkedin.png" alt="LinkedIn" class="h-5 w-5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="https://substack.com/@kewinolaisen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="Substack"
+            >
+              <img src="assets/substack.png" alt="Substack" class="h-4 w-4" />
+              <span>Substack</span>
+            </a>
+          </div>
+
+          <div class="mt-6 text-xs text-white/50">
+            © <span class="js-year"></span> Built by futureaibrief.xyz
+          </div>
+        </div>
+      </section>
+
+      <footer class="border-t border-white/10 py-10">
+        <div class="mx-auto max-w-6xl px-5 text-sm text-white/50">
+          © <span class="js-year"></span> FutureBrief. All rights reserved.
+        </div>
+
+        <div class="mt-10 text-xs text-white/40 flex items-center gap-2">
+          <span class="opacity-60">✦</span>
+          <span>
+            Built by <span class="text-white/70 font-medium">Kewin</span> ·
+            WebGL2 & Three.js experiments
+          </span>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Three.js (CDN) -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+  <script>
+    // Year (handles multiple places safely)
+    document.querySelectorAll('.js-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    // =========================
+    // 1) WebGL2 Shader (Hero)
+    // =========================
+    const shaderCanvas = document.getElementById('shader-canvas');
+
+    const vertexSrc = `#version 300 es
+    precision highp float;
+    in vec4 position;
+    void main(){gl_Position=position;}`;
+
+    const fragSrc = `#version 300 es
+    precision highp float;
+    out vec4 O;
+    uniform vec2 resolution;
+    uniform float time;
+    #define FC gl_FragCoord.xy
+    #define T time
+    #define R resolution
+    #define MN min(R.x,R.y)
+    float rnd(vec2 p) {
+      p=fract(p*vec2(12.9898,78.233));
+      p+=dot(p,p+34.56);
+      return fract(p.x*p.y);
+    }
+    float noise(in vec2 p) {
+      vec2 i=floor(p), f=fract(p), u=f*f*(3.-2.*f);
+      float a=rnd(i), b=rnd(i+vec2(1,0)), c=rnd(i+vec2(0,1)), d=rnd(i+1.);
+      return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+    }
+    float fbm(vec2 p) {
+      float t=.0, a=1.; mat2 m=mat2(1.,-.5,.2,1.2);
+      for (int i=0; i<5; i++) { t+=a*noise(p); p*=2.*m; a*=.5; }
+      return t;
+    }
+    float clouds(vec2 p) {
+      float d=1., t=.0;
+      for (float i=.0; i<3.; i++) {
+        float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);
+        t=mix(t,d,a); d=a; p*=2./(i+1.);
+      }
+      return t;
+    }
+    void main(void) {
+      vec2 uv=(FC-.5*R)/MN,st=uv*vec2(2,1);
+      vec3 col=vec3(0);
+      float bg=clouds(vec2(st.x+T*.5,-st.y));
+      uv*=1.-.3*(sin(T*.2)*.5+.5);
+      for (float i=1.; i<12.; i++) {
+        uv+=.1*cos(i*vec2(.1+.01*i, .8)+i*i+T*.5+.1*uv.x);
+        vec2 p=uv;
+        float d=length(p);
+        col+=.00125/d*(cos(sin(i)*vec3(1,2,3))+1.);
+        float b=noise(i+p+bg*1.731);
+        col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
+        col=mix(col,vec3(bg*.984,bg*.573,bg*.235),d);
+      }
+      O=vec4(col,1);
+    }`;
+
+    function createShader(gl, type, src) {
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(sh));
+        gl.deleteShader(sh);
+        return null;
+      }
+      return sh;
+    }
+
+    function createProgram(gl, vsSrc, fsSrc) {
+      const vs = createShader(gl, gl.VERTEX_SHADER, vsSrc);
+      const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSrc);
+      if (!vs || !fs) return null;
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(prog));
+        gl.deleteProgram(prog);
+        return null;
+      }
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+      return prog;
+    }
+
+    const heroGl = shaderCanvas.getContext('webgl2', { antialias: true, alpha: false });
+    if (heroGl) {
+      const prog = createProgram(heroGl, vertexSrc, fragSrc);
+      if (prog) {
+        const verts = new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]);
+        const buf = heroGl.createBuffer();
+        heroGl.bindBuffer(heroGl.ARRAY_BUFFER, buf);
+        heroGl.bufferData(heroGl.ARRAY_BUFFER, verts, heroGl.STATIC_DRAW);
+
+        const vao = heroGl.createVertexArray();
+        heroGl.bindVertexArray(vao);
+
+        const posLoc = heroGl.getAttribLocation(prog, 'position');
+        heroGl.enableVertexAttribArray(posLoc);
+        heroGl.vertexAttribPointer(posLoc, 2, heroGl.FLOAT, false, 0, 0);
+
+        const uRes = heroGl.getUniformLocation(prog, 'resolution');
+        const uTime = heroGl.getUniformLocation(prog, 'time');
+
+        function heroResize() {
+          const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
+          const rect = shaderCanvas.getBoundingClientRect();
+          const w = Math.max(1, Math.floor(rect.width * dpr));
+          const h = Math.max(1, Math.floor(rect.height * dpr));
+          if (shaderCanvas.width !== w || shaderCanvas.height !== h) {
+            shaderCanvas.width = w;
+            shaderCanvas.height = h;
+            heroGl.viewport(0, 0, w, h);
+          }
+        }
+
+        const start = performance.now();
+        function heroFrame(now) {
+          heroResize();
+          heroGl.useProgram(prog);
+          heroGl.bindVertexArray(vao);
+          heroGl.uniform2f(uRes, shaderCanvas.width, shaderCanvas.height);
+          heroGl.uniform1f(uTime, (now - start) * 0.001);
+          heroGl.drawArrays(heroGl.TRIANGLE_STRIP, 0, 4);
+          requestAnimationFrame(heroFrame);
+        }
+
+        window.addEventListener('resize', heroResize, { passive: true });
+        requestAnimationFrame(heroFrame);
+      }
+    }
+
+    // =========================
+    // 2) Dotted Surface (Three.js)
+    // =========================
+    const dottedContainer = document.getElementById('dotted-surface');
+
+    if (window.THREE && dottedContainer) {
+      const THREE = window.THREE;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.Fog(0x111827, 2000, 10000);
+
+      const camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        1,
+        10000
+      );
+      camera.position.set(0, 355, 1220);
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(scene.fog.color, 0);
+
+      dottedContainer.appendChild(renderer.domElement);
+
+      const SEPARATION = 150;
+      const AMOUNTX = 40;
+      const AMOUNTY = 60;
+
+      const geometry = new THREE.BufferGeometry();
+      const positions = [];
+      const colors = [];
+
+      for (let ix = 0; ix < AMOUNTX; ix++) {
+        for (let iy = 0; iy < AMOUNTY; iy++) {
+          const x = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2;
+          const y = 0;
+          const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
+          positions.push(x, y, z);
+          colors.push(200 / 255, 200 / 255, 200 / 255);
+        }
+      }
+
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+      const material = new THREE.PointsMaterial({
+        size: 8,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.55,
+        sizeAttenuation: true,
+        depthWrite: false
+      });
+
+      const points = new THREE.Points(geometry, material);
+      scene.add(points);
+
+      let count = 0;
+
+      function dottedResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      function animate() {
+        const positionAttribute = geometry.attributes.position;
+        const arr = positionAttribute.array;
+
+        let i = 0;
+        for (let ix = 0; ix < AMOUNTX; ix++) {
+          for (let iy = 0; iy < AMOUNTY; iy++) {
+            const idx = i * 3;
+            arr[idx + 1] =
+              Math.sin((ix + count) * 0.3) * 50 +
+              Math.sin((iy + count) * 0.5) * 50;
+            i++;
+          }
+        }
+
+        positionAttribute.needsUpdate = true;
+        renderer.render(scene, camera);
+        count += 0.1;
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', dottedResize, { passive: true });
+      animate();
+    }
+  </script>
+</body>
+</html>

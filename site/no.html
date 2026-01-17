@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Future AI Brief</title>
-  <meta name="description" content="Future AI Brief explores practical AI applications, thoughtful web design, and early-stage AI product concepts focused on real-world solutions." />
 
+  <title>Future AI Brief</title>
+  <meta name="description" content="Future AI Brief utforsker praktiske AI-bruksområder, gjennomtenkt webdesign og tidlige produktkonsepter bygget for ekte behov." />
+
+  <!-- SEO: canonical + hreflang -->
+  <link rel="canonical" href="/no.html" />
+  <link rel="alternate" hreflang="en" href="/"/>
+  <link rel="alternate" hreflang="no" href="/no.html"/>
+  <link rel="alternate" hreflang="x-default" href="/"/>
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Future AI Brief" />
+  <meta property="og:description" content="Konsepter, plattformer og signaler for det neste tiåret med AI." />
+  <meta property="og:type" content="website" />
 
   <!-- Tailwind via CDN (ingen build) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +31,6 @@
     canvas { touch-action: none; }
     html { scroll-behavior: smooth; }
 
-    /* Menu buttons: white border, black center, white text, hover-lift */
     .nav-btn{
       display:inline-flex;
       align-items:center;
@@ -46,192 +56,198 @@
     }
     .nav-btn:active{ transform: translateY(0); }
 
-    /* Slight nicer focus */
     .nav-btn:focus-visible{
       outline: none;
       box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35);
     }
 
-    /* Anchor offset for sticky header */
     .anchor-offset { scroll-margin-top: 90px; }
-    /* Reusable light card + pop hover */
-.info-card{
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.16); /* lysegrå glass */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-}
 
-.info-card:hover{
-  transform: translateY(-6px) scale(1.01); /* pop */
-  background: rgba(255,255,255,.22);
-  border-color: rgba(255,255,255,.35);
-  box-shadow: 0 16px 40px rgba(0,0,0,.35);
-}
-
+    .info-card{
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .info-card:hover{
+      transform: translateY(-6px) scale(1.01);
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
   </style>
 </head>
 
 <body class="min-h-screen bg-neutral-950 text-neutral-100">
   <!-- Top bar -->
   <header id="top" class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
-  <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
 
-    <!-- LOGO (venstre) -->
-    <a href="#top" class="flex items-center">
-      <img
-        src="logo.png"
-        alt="Future AI Brief logo"
-        class="h-16 w-auto"
-      />
-    </a>
+      <!-- LOGO (venstre) -->
+      <a href="#top" class="flex items-center">
+        <img
+          src="assets/logo.png"
+          alt="Future AI Brief logo"
+          class="h-16 w-auto"
+        />
+      </a>
 
-    <!-- MENY (høyre) -->
-    <nav class="flex gap-3">
-      <a class="nav-btn" href="#projects">Projects</a>
-      <a class="nav-btn" href="#ambitions">Ambitions</a>
-      <a class="nav-btn" href="#focus">Focus</a>
-      <a class="nav-btn" href="#contact">Contact</a>
-    </nav>
+      <!-- MENY (høyre) -->
+      <nav class="flex gap-3 items-center">
+        <a class="nav-btn" href="#projects">Prosjekter</a>
+        <a class="nav-btn" href="#ambitions">Ambisjoner</a>
+        <a class="nav-btn" href="#focus">Fokus</a>
+        <a class="nav-btn" href="#contact">Kontakt</a>
 
-  </div>
-</header>
+        <!-- Språk -->
+        <a class="nav-btn" href="index.html" aria-label="Bytt til engelsk">EN</a>
+      </nav>
 
-
-      
+    </div>
+  </header>
 
   <main class="relative">
     <!-- HERO med shader -->
     <section class="relative w-full h-[calc(100vh-73px)] overflow-hidden bg-black pt-24">
-
       <canvas id="shader-canvas" class="absolute inset-0 h-full w-full"></canvas>
 
-      <!-- lesbarhets-overlay -->
       <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65"></div>
 
-      <!-- Hero content -->
       <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-5 pb-16 pt-14 md:pb-24 md:pt-20">
-        <!-- Removed: Building in public — early stage. -->
-
         <h1 class="text-balance text-4xl font-semibold leading-tight md:text-6xl">
-          Concepts, platforms, and signals for the next decade of AI.
+          Konsepter, plattformer og signaler for det neste tiåret med AI.
         </h1>
-
-    
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#projects"
              class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90">
-            Explore projects
+            Se prosjekter
           </a>
           <a href="#ambitions"
              class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10">
-            See ambitions
+            Se ambisjoner
           </a>
         </div>
 
         <div class="mt-10 grid gap-4 md:grid-cols-3">
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-            <div class="text-sm font-semibold">Clear thinking</div>
-            <div class="mt-1 text-sm text-white/65">Short briefs, no hype. Just useful structure.</div>
+            <div class="text-sm font-semibold">Klar tenkning</div>
+            <div class="mt-1 text-sm text-white/65">Korte briefs, uten hype. Bare nyttig struktur.</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-            <div class="text-sm font-semibold">Build-first</div>
-            <div class="mt-1 text-sm text-white/65">Prototypes, landing pages, and proof-of-work.</div>
+            <div class="text-sm font-semibold">Bygg først</div>
+            <div class="mt-1 text-sm text-white/65">Prototyper, landingssider og “proof-of-work”.</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-            <div class="text-sm font-semibold">Future utility</div>
-            <div class="mt-1 text-sm text-white/65">Marketplaces, energy, and real-world systems.</div>
+            <div class="text-sm font-semibold">Fremtidig nytte</div>
+            <div class="mt-1 text-sm text-white/65">Markedsplasser, energi og systemer i virkeligheten.</div>
           </div>
         </div>
 
         <div class="mt-8 text-xs text-white/50">
-          Tip: Move the mouse (or touch) on the hero background.
+          Tips: Beveg musen (eller bruk touch) på bakgrunnen i hero.
         </div>
       </div>
     </section>
 
-    <!-- LOWER AREA WRAPPER (dotted surface bakgrunn) -->
+    <!-- LOWER AREA WRAPPER -->
     <section class="relative overflow-hidden">
-      <!-- Dotted Surface Canvas layer -->
       <div id="dotted-surface" class="pointer-events-none absolute inset-0 -z-10"></div>
-
-      <!-- Subtil mørk overlay så dots ikke tar over -->
       <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-neutral-950/55 via-neutral-950/70 to-neutral-950"></div>
 
       <!-- Ambitions -->
-<section id="ambitions" class="anchor-offset mx-auto max-w-6xl px-5 pb-20 pt-14">
-  <h2 class="text-2xl font-semibold md:text-3xl">Ambitions:</h2>
+      <section id="ambitions" class="anchor-offset mx-auto max-w-6xl px-5 pb-20 pt-14">
+        <h2 class="text-2xl font-semibold md:text-3xl">Ambisjoner</h2>
 
-  <!-- Intro -->
-  <div class="group relative mt-3 max-w-2xl pl-6">
-    <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
-    <p class="leading-relaxed text-white/75">
-  I focus on practical AI applications, thoughtful web design, and early-stage AI product concepts,
-  building websites, web applications, and custom tools designed for real-world use.
-  The goal is to turn ideas into clear, usable systems -not demos or hype.
-</p>
+        <div class="group relative mt-3 max-w-2xl pl-6">
+          <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
+          <p class="leading-relaxed text-white/75">
+            Jeg fokuserer på praktiske AI-bruksområder, gjennomtenkt webdesign og tidlige produktkonsepter,
+            og bygger nettsider, webapplikasjoner og spesialtilpassede verktøy for ekte behov.
+            Målet er å gjøre idéer om til tydelige, brukbare systemer — ikke demoer eller hype.
+          </p>
+        </div>
 
-  </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Praktiske AI-bruksområder</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Reelle use cases — testbare, nyttige og bygget for å brukes.
+            </div>
+          </article>
 
-  <!-- Cards -->
-  <div class="mt-8 grid gap-4 md:grid-cols-2">
-    <article class="info-card">
-      <h3 class="text-sm font-semibold text-white">Practical AI applications</h3>
-      <div class="mt-2 text-sm text-white/70">
-        Real-world AI use cases - applied, testable, and built to be used.
-      </div>
-    </article>
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Webdesign som leveres</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Rene landingssider og webapper med rask UX, tydelighet og vedlikeholdbarhet.
+            </div>
+          </article>
 
-    <article class="info-card">
-      <h3 class="text-sm font-semibold text-white">Web design that ships</h3>
-      <div class="mt-2 text-sm text-white/70">
-        Clean landing pages and web apps with fast UX, clarity, and maintainability
-      </div>
-    </article>
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">AI-produktkonsepter</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Tidlige idéer, prototyper og plattformer — scoped som ekte produkter.
+            </div>
+          </article>
 
-    <article class="info-card">
-      <h3 class="text-sm font-semibold text-white">AI product concepts</h3>
-      <div class="mt-2 text-sm text-white/70">
-        Early-stage ideas, prototypes, and platforms - scoped like real products
-    </article>
-
-    <article class="info-card">
-      <h3 class="text-sm font-semibold text-white">Current direction</h3>
-      <div class="mt-2 text-sm text-white/70">
-        Building a small portfolio of concepts and prototypes — marketplaces, operations tooling, and future utilities.
-      </div>
-    </article>
-  </div>
-</section>
-
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Nåværende retning</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Bygger en liten portefølje av konsepter og prototyper — markedsplasser, drift/verktøy og fremtidsnytte.
+            </div>
+          </article>
+        </div>
+      </section>
 
       <!-- Projects -->
       <section id="projects" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
-        <h2 class="text-2xl font-semibold md:text-3xl">Projects</h2>
+        <h2 class="text-2xl font-semibold md:text-3xl">Prosjekter</h2>
         <p class="mt-3 max-w-2xl text-white/70">
-          A few active threads. This list will evolve.
+          Noen aktive spor. Denne listen vil utvikle seg.
         </p>
 
         <div class="mt-8 grid gap-4 md:grid-cols-3">
           <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div class="text-sm font-semibold">Sharge Share</div>
-            <div class="mt-2 text-sm text-white/65">P2P home-charging marketplace concept.</div>
-            <div class="mt-4 text-xs text-white/50">Status: Draft / Partner outreach</div>
+            <div class="mt-2 text-sm text-white/65">Konsept: P2P markedsplass for hjemmelading.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Utkast / partnerdialog</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div class="text-sm font-semibold">Crew-post</div>
-            <div class="mt-2 text-sm text-white/65">Internal handover notes for restaurant operations.</div>
+            <div class="mt-2 text-sm text-white/65">Overleveringsnotater for restaurantdrift.</div>
             <div class="mt-4 text-xs text-white/50">Status: Prototype</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div class="text-sm font-semibold">Future briefs</div>
-            <div class="mt-2 text-sm text-white/65">Short notes on tools, patterns, and strategy.</div>
-            <div class="mt-4 text-xs text-white/50">Status: In progress</div>
+            <div class="mt-2 text-sm text-white/65">Korte notater om verktøy, mønstre og strategi.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Pågår</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Focus -->
+      <section id="focus" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Fokus</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          Jeg bryr meg om tydelighet, nytte og å levere. Noen prinsipper:
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Signal over støy</div>
+            <div class="mt-2 text-sm text-white/65">Reduser kompleksitet. Behold kjernen forståelig.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Systemer som fungerer</div>
+            <div class="mt-2 text-sm text-white/65">Praktiske verktøy med ekte arbeidsflyt i tankene.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Rask iterasjon</div>
+            <div class="mt-2 text-sm text-white/65">Små releaser, læringssløyfer og forbedring.</div>
           </div>
         </div>
       </section>
@@ -239,61 +255,58 @@
       <!-- Contact -->
       <section id="contact" class="anchor-offset mx-auto max-w-6xl px-5 pb-24">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-10">
-          <h2 class="text-2xl font-semibold md:text-3xl">Contact</h2>
+          <h2 class="text-2xl font-semibold md:text-3xl">Kontakt</h2>
           <p class="mt-3 max-w-2xl text-white/70">
-            Want to collaborate, give feedback, or just say hi? Send a message.
+            Vil du samarbeide, gi feedback eller bare si hei? Send en melding.
           </p>
 
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
             <a class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90"
                href="mailto:kewinolaisen@yahoo.no">
-              Email
+              E-post
             </a>
-           <a
-  href=https://www.linkedin.com/in/kewin-olaisen-287204338/
-  target="_blank"
-  rel="noopener noreferrer"
-  class="nav-btn inline-flex items-center gap-2"
-  aria-label="LinkedIn profile"
->
-  <img src="linkedin.png" alt="LinkedIn" class="h-5 w-5" />
-  <span>LinkedIn</span>
-</a>
 
- <!-- Substack -->
-  <a
-    href=https://substack.com/@kewinolaisen?
-    target="_blank"
-    rel="noopener noreferrer"
-    class="nav-btn inline-flex items-center gap-2"
-    aria-label="Substack"
-  >
-    <img src="substack.png" alt="Substack" class="h-4 w-4" />
-    <span>Substack</span>
-  </a>
-</div>
+            <a
+              href="https://www.linkedin.com/in/kewin-olaisen-287204338/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="LinkedIn"
+            >
+              <img src="assets/linkedin.png" alt="LinkedIn" class="h-5 w-5" />
+              <span>LinkedIn</span>
+            </a>
 
-
+            <a
+              href="https://substack.com/@kewinolaisen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="Substack"
+            >
+              <img src="assets/substack.png" alt="Substack" class="h-4 w-4" />
+              <span>Substack</span>
+            </a>
           </div>
 
           <div class="mt-6 text-xs text-white/50">
-            © <span id="y"></span> Built by futureaibrief.xyz
+            © <span class="js-year"></span> Built by futureaibrief.xyz
           </div>
         </div>
       </section>
 
       <footer class="border-t border-white/10 py-10">
         <div class="mx-auto max-w-6xl px-5 text-sm text-white/50">
-           © <span id="y"></span> FutureBrief. All rights reserved.
+          © <span class="js-year"></span> FutureBrief. Alle rettigheter reservert.
         </div>
-        <div class="mt-10 text-xs text-white/40 flex items-center gap-2">
-  <span class="opacity-60">✦</span>
-  <span>
-    Built by <span class="text-white/70 font-medium">Kewin</span> ·
-    WebGL2 & Three.js experiments
-  </span>
-</div>
 
+        <div class="mt-10 text-xs text-white/40 flex items-center gap-2">
+          <span class="opacity-60">✦</span>
+          <span>
+            Bygget av <span class="text-white/70 font-medium">Kewin</span> ·
+            WebGL2 & Three.js eksperimenter
+          </span>
+        </div>
       </footer>
     </section>
   </main>
@@ -302,8 +315,9 @@
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
   <script>
-    // year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.querySelectorAll('.js-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
 
     // =========================
     // 1) WebGL2 Shader (Hero)
@@ -446,7 +460,6 @@
     // =========================
     const dottedContainer = document.getElementById('dotted-surface');
 
-    // Safety: if THREE isn't loaded, do nothing
     if (window.THREE && dottedContainer) {
       const THREE = window.THREE;
 
@@ -468,7 +481,6 @@
 
       dottedContainer.appendChild(renderer.domElement);
 
-      // Particle grid
       const SEPARATION = 150;
       const AMOUNTX = 40;
       const AMOUNTY = 60;
@@ -483,8 +495,6 @@
           const y = 0;
           const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
           positions.push(x, y, z);
-
-          // Light dots for dark background
           colors.push(200 / 255, 200 / 255, 200 / 255);
         }
       }
