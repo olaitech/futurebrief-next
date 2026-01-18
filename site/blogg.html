@@ -70,6 +70,84 @@
       padding: 1.5rem;
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
+
+    .hub-top{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hub-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.6rem 1rem;
+      border:2px solid rgba(255,255,255,.9);
+      border-radius:9999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.95);
+      font-size:.9rem;
+      font-weight:700;
+      letter-spacing:.2px;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    .hub-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,1);
+    }
+    .hub-grid{
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    @media (min-width: 768px){
+      .hub-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1100px){
+      .hub-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .hub-card{
+      display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(10,10,12,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px;
+      color: rgba(255,255,255,.9);
+      text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .hub-card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.3);
+      background: rgba(12,12,14,.45);
+      box-shadow: 0 16px 32px rgba(0,0,0,.35);
+    }
+    .hub-date{
+      font-size: .78rem;
+      opacity: .6;
+    }
+    .hub-title{
+      margin-top: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .hub-excerpt{
+      margin-top: 8px;
+      font-size: .9rem;
+      opacity: .75;
+    }
+    .hub-section{
+      margin-top: 16px;
+      font-weight: 600;
+      opacity: .9;
+    }
   </style>
 </head>
 
@@ -92,15 +170,20 @@
   <main class="relative">
     <section class="mx-auto max-w-5xl px-5 pt-28 pb-24">
       <div class="info-card">
-        <h1 class="text-3xl font-semibold md:text-4xl">Blogg</h1>
-        <p class="mt-2 text-sm text-white/70">
-          Notater om å bygge praktiske systemer, AI-arbeidsflyt og produkt-tenkning.
-        </p>
-        <p class="mt-6 text-sm text-white/70">
-          Jeg publiserer artikler her. Foreløpig er siden bevisst minimalistisk.
-        </p>
-        <!-- Lim inn Substack-innhold her -->
-        <div id="substack-content" class="mt-6"></div>
+        <div class="hub-top">
+          <div>
+            <h1 class="text-3xl font-semibold md:text-4xl">Blogg</h1>
+            <p class="mt-2 text-sm text-white/70">
+              Notater om å bygge praktiske systemer, AI-arbeidsflyt og produkt-tenkning.
+            </p>
+            <div class="hub-section text-sm text-white/70">Siste innlegg</div>
+          </div>
+          <a class="hub-btn" href="https://substack.com/@kewinolaisen" target="_blank" rel="noopener noreferrer">Besøk Substack</a>
+        </div>
+      </div>
+
+      <div id="post-grid" class="hub-grid">
+        <div class="hub-card">Laster siste innlegg...</div>
       </div>
     </section>
   </main>
@@ -136,7 +219,6 @@
         ctx.clearRect(0,0,w,h);
         ctx.globalCompositeOperation = 'lighter';
 
-        // subtle haze
         ctx.fillStyle = 'rgba(0,0,0,0.35)';
         ctx.fillRect(0,0,w,h);
 
@@ -149,7 +231,6 @@
           if(p.y < -p.r) p.y = h + p.r;
           if(p.y > h + p.r) p.y = -p.r;
 
-          // parallax shift
           const px = p.x + (mx - w*0.5) * 0.02;
           const py = p.y + (my - h*0.5) * 0.02;
 
@@ -175,6 +256,107 @@
       tx = window.innerWidth * dpr * 0.5;
       ty = window.innerHeight * dpr * 0.5;
       draw();
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const RSS_URL = 'https://kewinolaisen.substack.com/feed';
+      const SUBSTACK_URL = 'https://substack.com/@kewinolaisen';
+      const MAX_ITEMS = 6;
+      const LOCALE = 'nb-NO';
+      const grid = document.getElementById('post-grid');
+      if (!grid) return;
+
+      function stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html || '';
+        return (tmp.textContent || '').trim();
+      }
+
+      function truncate(text, maxLen) {
+        if (text.length <= maxLen) return text;
+        return text.slice(0, maxLen).trim() + '...';
+      }
+
+      function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        if (Number.isNaN(d.getTime())) return '';
+        return d.toLocaleDateString(LOCALE, { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      function render(items) {
+        const posts = items.slice(0, MAX_ITEMS);
+        if (!posts.length) {
+          grid.innerHTML = '<div class="hub-card">Ingen innlegg ennå. Besøk Substack for oppdateringer.</div>';
+          return;
+        }
+        grid.innerHTML = '';
+        posts.forEach(item => {
+          const title = item.title || 'Untitled';
+          const date = formatDate(item.pubDate || item.published || item.date);
+          const excerpt = truncate(stripHtml(item.description || item.content || ''), 140);
+          const link = item.link || SUBSTACK_URL;
+
+          const card = document.createElement('a');
+          card.className = 'hub-card';
+          card.href = link;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+
+          const dateEl = document.createElement('div');
+          dateEl.className = 'hub-date';
+          dateEl.textContent = date;
+
+          const titleEl = document.createElement('div');
+          titleEl.className = 'hub-title';
+          titleEl.textContent = title;
+
+          const excerptEl = document.createElement('div');
+          excerptEl.className = 'hub-excerpt';
+          excerptEl.textContent = excerpt;
+
+          card.appendChild(dateEl);
+          card.appendChild(titleEl);
+          card.appendChild(excerptEl);
+          grid.appendChild(card);
+        });
+      }
+
+      async function fetchDirect() {
+        const res = await fetch(RSS_URL);
+        if (!res.ok) throw new Error('RSS fetch failed');
+        const xmlText = await res.text();
+        const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+        return Array.from(doc.querySelectorAll('item')).map(item => ({
+          title: item.querySelector('title')?.textContent || '',
+          link: item.querySelector('link')?.textContent || '',
+          pubDate: item.querySelector('pubDate')?.textContent || '',
+          description: item.querySelector('description')?.textContent || ''
+        }));
+      }
+
+      async function fetchProxy() {
+        const url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS_URL);
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Proxy fetch failed');
+        const data = await res.json();
+        return Array.isArray(data.items) ? data.items : [];
+      }
+
+      (async () => {
+        try {
+          const items = await fetchDirect();
+          render(items);
+        } catch (err) {
+          try {
+            const items = await fetchProxy();
+            render(items);
+          } catch (proxyErr) {
+            grid.innerHTML = '<div class="hub-card">Kunne ikke laste innlegg akkurat nå. Besøk Substack.</div>';
+          }
+        }
+      })();
     })();
   </script>
 </body>
