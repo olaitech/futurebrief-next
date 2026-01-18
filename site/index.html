@@ -4,21 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-  <title>FutureBrief — Concepts, platforms, and signals for the next decade of AI</title>
+  <title>FutureBrief - Concepts, platforms, and signals for the next decade of AI</title>
 
 <meta name="description" content="FutureBrief explores concepts, platforms, and signals shaping the next decade of artificial intelligence. Clear thinking, build-first projects, and real-world systems." />
 
 
   <!-- SEO: canonical + hreflang -->
-  <link rel="canonical" href="/" />
-  <link rel="alternate" hreflang="en" href="/"/>
-  <link rel="alternate" hreflang="no" href="/no.html"/>
-  <link rel="alternate" hreflang="x-default" href="/"/>
+  <link rel="canonical" href="https://futurebrief.no/" />
+  <link rel="alternate" hreflang="en" href="https://futurebrief.no/"/>
+  <link rel="alternate" hreflang="no" href="https://futurebrief.no/no.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://futurebrief.no/"/>
 
   <!-- Social preview -->
-  <meta property="og:title" content="Future AI Brief" />
-  <meta property="og:description" content="Concepts, platforms, and signals for the next decade of AI." />
+  <meta property="og:title" content="FutureBrief - Concepts, platforms, and signals for the next decade of AI" />
+  <meta property="og:description" content="FutureBrief explores concepts, platforms, and signals shaping the next decade of AI." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://futurebrief.no/" />
+  <meta property="og:image" content="https://futurebrief.no/assets/og-Image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Tailwind via CDN (no build) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -83,6 +87,83 @@
       background: rgba(255,255,255,.22);
       border-color: rgba(255,255,255,.35);
       box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+
+    .cookie-banner{
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.96);
+      color: #0b0b0b;
+      box-shadow: 0 16px 40px rgba(0,0,0,.15);
+    }
+    .cookie-banner__inner{
+      display:flex;
+      flex-direction: column;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .cookie-banner__content{
+      font-size: .92rem;
+      color: rgba(0,0,0,.7);
+    }
+    .cookie-banner__content a{
+      display: inline-block;
+      margin-top: .35rem;
+      color: rgba(0,0,0,.7);
+      text-decoration: none;
+    }
+    .cookie-banner__content a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .cookie-banner__actions{
+      display:flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .cookie-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border-radius: .75rem;
+      font-size:.85rem;
+      font-weight:700;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .cookie-btn--primary{
+      background:#0b0b0b;
+      color:#ffffff;
+      border: 1px solid #0b0b0b;
+    }
+    .cookie-btn--primary:hover{
+      background:#111111;
+    }
+    .cookie-btn--secondary{
+      background: transparent;
+      color:#0b0b0b;
+      border: 1px solid rgba(0,0,0,.18);
+    }
+    .cookie-btn--secondary:hover{
+      background: rgba(0,0,0,.04);
+    }
+
+    @media (min-width: 768px){
+      .cookie-banner__inner{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cookie-banner__actions{
+        flex-direction: row;
+      }
     }
   </style>
 </head>
@@ -178,7 +259,7 @@
           <p class="leading-relaxed text-white/75">
             I focus on practical AI applications, thoughtful web design, and early-stage AI product concepts,
             building websites, web applications, and custom tools designed for real-world use.
-            The goal is to turn ideas into clear, usable systems — not demos or hype.
+            The goal is to turn ideas into clear, usable systems - not demos or hype.
           </p>
         </div>
 
@@ -186,7 +267,7 @@
           <article class="info-card">
             <h3 class="text-sm font-semibold text-white">Practical AI applications</h3>
             <div class="mt-2 text-sm text-white/70">
-              Real-world AI use cases — applied, testable, and built to be used.
+              Real-world AI use cases - applied, testable, and built to be used.
             </div>
           </article>
 
@@ -200,14 +281,14 @@
           <article class="info-card">
             <h3 class="text-sm font-semibold text-white">AI product concepts</h3>
             <div class="mt-2 text-sm text-white/70">
-              Early-stage ideas, prototypes, and platforms — scoped like real products.
+              Early-stage ideas, prototypes, and platforms - scoped like real products.
             </div>
           </article>
 
           <article class="info-card">
             <h3 class="text-sm font-semibold text-white">Current direction</h3>
             <div class="mt-2 text-sm text-white/70">
-              Building a small portfolio of concepts and prototypes — marketplaces, operations tooling, and future utilities.
+              Building a small portfolio of concepts and prototypes - marketplaces, operations tooling, and future utilities.
             </div>
           </article>
         </div>
@@ -300,26 +381,39 @@
           </div>
 
           <div class="mt-6 text-xs text-white/50">
-            © <span class="js-year"></span> Built by futureaibrief.xyz
+            (c) <span class="js-year"></span> Built by futurebrief.no
           </div>
         </div>
       </section>
 
       <footer class="border-t border-white/10 py-10">
         <div class="mx-auto max-w-6xl px-5 text-sm text-white/50">
-          © <span class="js-year"></span> FutureBrief. All rights reserved.
+          (c) <span class="js-year"></span> FutureBrief. All rights reserved.
         </div>
 
         <div class="mt-10 text-xs text-white/40 flex items-center gap-2">
-          <span class="opacity-60">✦</span>
+          <span class="opacity-60">*</span>
           <span>
-            Built by <span class="text-white/70 font-medium">Kewin</span> ·
-            WebGL2 & Three.js experiments
+            Built by <span class="text-white/70 font-medium">Kewin</span> - WebGL2 & Three.js experiments
           </span>
         </div>
       </footer>
     </section>
   </main>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <p id="cookie-text"></p>
+        <a id="cookie-link" href="personvern.html">Les mer</a>
+      </div>
+      <div class="cookie-banner__actions">
+        <button id="cookie-accept-all" class="cookie-btn cookie-btn--primary">Godta alle</button>
+        <button id="cookie-accept-necessary" class="cookie-btn cookie-btn--secondary">Bare nødvendige</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Three.js (CDN) -->
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
@@ -329,6 +423,52 @@
     document.querySelectorAll('.js-year').forEach(el => {
       el.textContent = new Date().getFullYear();
     });
+
+    // Cookie consent (simple, language-aware)
+    (function () {
+      const key = 'cookieConsent';
+      const banner = document.getElementById('cookie-banner');
+      const textEl = document.getElementById('cookie-text');
+      const linkEl = document.getElementById('cookie-link');
+      const acceptAll = document.getElementById('cookie-accept-all');
+      const acceptNecessary = document.getElementById('cookie-accept-necessary');
+
+      if (!banner || !textEl || !linkEl || !acceptAll || !acceptNecessary) return;
+
+      const lang = (document.documentElement.lang || 'en').toLowerCase();
+      const isNo = lang.startsWith('no');
+
+      textEl.textContent = isNo
+        ? 'Dette nettstedet bruker informasjonskapsler. Noen er nødvendige for at nettstedet skal fungere, mens andre hjelper oss å forbedre opplevelsen.'
+        : 'This website uses cookies. Some are necessary for the site to work, while others help improve your experience.';
+
+      linkEl.textContent = isNo ? 'Les mer' : 'Learn more';
+      linkEl.setAttribute('href', isNo ? 'personvern.html' : 'privacy.html');
+
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        localStorage.removeItem(key);
+      }
+
+      acceptAll.textContent = isNo ? 'Godta alle' : 'Accept all';
+      acceptNecessary.textContent = isNo ? 'Bare nødvendige' : 'Necessary only';
+
+      const saved = localStorage.getItem(key);
+      if (saved === 'all' || saved === 'necessary') {
+        window.__cookieConsent = saved;
+        return;
+      }
+
+      banner.classList.remove('hidden');
+
+      function setConsent(value) {
+        localStorage.setItem(key, value);
+        window.__cookieConsent = value;
+        banner.classList.add('hidden');
+      }
+
+      acceptAll.addEventListener('click', () => setConsent('all'));
+      acceptNecessary.addEventListener('click', () => setConsent('necessary'));
+    })();
 
     // =========================
     // 1) WebGL2 Shader (Hero)
