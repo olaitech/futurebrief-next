@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <title>FutureBrief - Concepts, platforms, and signals for the next decade of AI</title>
+
+<meta name="description" content="FutureBrief explores concepts, platforms, and signals shaping the next decade of artificial intelligence. Clear thinking, build-first projects, and real-world systems." />
+
+
+  <!-- SEO: canonical + hreflang -->
+  <link rel="canonical" href="https://futurebrief.no/" />
+  <link rel="alternate" hreflang="en" href="https://futurebrief.no/"/>
+  <link rel="alternate" hreflang="no" href="https://futurebrief.no/no.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://futurebrief.no/"/>
+
+  <!-- Social preview -->
+  <meta property="og:title" content="FutureBrief - Concepts, platforms, and signals for the next decade of AI" />
+  <meta property="og:description" content="FutureBrief explores concepts, platforms, and signals shaping the next decade of AI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://futurebrief.no/" />
+  <meta property="og:image" content="https://futurebrief.no/assets/og-Image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Tailwind via CDN (no build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    canvas { touch-action: none; }
+    html { scroll-behavior: smooth; }
+
+    #fx-bg{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+    main{ position: relative; z-index: 1; }
+
+    /* Menu buttons: white border, black center, white text, hover-lift */
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border:2px solid rgba(255,255,255,.9);
+      border-radius:9999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.95);
+      font-size:.85rem;
+      font-weight:700;
+      letter-spacing:.2px;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,1);
+    }
+    .nav-btn:active{ transform: translateY(0); }
+
+    .nav-btn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35);
+    }
+
+    /* Anchor offset for sticky header */
+    .anchor-offset { scroll-margin-top: 90px; }
+
+    /* Reusable light card + pop hover */
+    .info-card{
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .info-card:hover{
+      transform: translateY(-6px) scale(1.01);
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+
+    .footer-wrap { width:100%; padding: 48px 24px; }
+    .footer-inner { max-width: 1100px; margin-left:auto; text-align: right; }
+    .footer-card { border: 1px solid rgba(255,255,255,.10); border-radius: 22px; background: rgba(10,10,12,.35); backdrop-filter: blur(10px); position: relative; z-index: 1; }
+    .footer-grid { display:grid; gap: 28px; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 26px; }
+    .footer-title { font-weight:600; opacity:.9; margin-bottom:12px; }
+    .footer-link { display:block; padding: 8px 0; opacity:.7; text-decoration:none; }
+    .footer-link:hover { opacity: 1; }
+    .footer-meta { padding: 0 26px 22px 26px; opacity:.55; font-size: 14px; }
+    @media (max-width: 900px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+    .cookie-banner{
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.96);
+      color: #0b0b0b;
+      box-shadow: 0 16px 40px rgba(0,0,0,.15);
+    }
+    .cookie-banner__inner{
+      display:flex;
+      flex-direction: column;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .cookie-banner__content{
+      font-size: .92rem;
+      color: rgba(0,0,0,.7);
+    }
+    .cookie-banner__content a{
+      display: inline-block;
+      margin-top: .35rem;
+      color: rgba(0,0,0,.7);
+      text-decoration: none;
+    }
+    .cookie-banner__content a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .cookie-banner__actions{
+      display:flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .cookie-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border-radius: .75rem;
+      font-size:.85rem;
+      font-weight:700;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .cookie-btn--primary{
+      background:#0b0b0b;
+      color:#ffffff;
+      border: 1px solid #0b0b0b;
+    }
+    .cookie-btn--primary:hover{
+      background:#111111;
+    }
+    .cookie-btn--secondary{
+      background: transparent;
+      color:#0b0b0b;
+      border: 1px solid rgba(0,0,0,.18);
+    }
+    .cookie-btn--secondary:hover{
+      background: rgba(0,0,0,.04);
+    }
+
+    @media (min-width: 768px){
+      .cookie-banner__inner{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cookie-banner__actions{
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-neutral-950 text-neutral-100">
+  <canvas id="fx-bg" aria-hidden="true"></canvas>
+  <!-- Top bar -->
+  <header id="top" class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
+
+      <!-- LOGO (left) -->
+      <a href="#top" class="flex items-center">
+        <img
+          src="assets/logo.png"
+          alt="Future AI Brief logo"
+          class="h-16 w-auto"
+        />
+      </a>
+
+      <!-- MENU (right) -->
+      <nav class="flex gap-3 items-center">
+        <a class="nav-btn" href="#projects">Projects</a>
+        <a class="nav-btn" href="#ambitions">Ambitions</a>
+        <a class="nav-btn" href="#focus">Focus</a>
+        <a class="nav-btn" href="#contact">Contact</a>
+
+        <!-- Language switch -->
+        <a class="nav-btn" href="no.html" aria-label="Switch to Norwegian">NO</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="relative">
+    <!-- HERO with shader -->
+    <section class="hero relative w-full h-[calc(100vh-73px)] overflow-hidden bg-transparent pt-24">
+
+    <!-- readability overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65"></div>
+
+      <!-- Hero content -->
+      <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-5 pb-16 pt-14 md:pb-24 md:pt-20">
+        <h1 class="text-balance text-4xl font-semibold leading-tight md:text-6xl">
+          Concepts, platforms, and signals for the next decade of AI.
+        </h1>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#projects"
+             class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90">
+            Explore projects
+          </a>
+          <a href="#ambitions"
+             class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10">
+            See ambitions
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Clear thinking</div>
+            <div class="mt-1 text-sm text-white/65">Short briefs, no hype. Just useful structure.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Build-first</div>
+            <div class="mt-1 text-sm text-white/65">Prototypes, landing pages, and proof-of-work.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Future utility</div>
+            <div class="mt-1 text-sm text-white/65">Marketplaces, energy, and real-world systems.</div>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 text-xs font-semibold text-white tracking-wide"
+          style="
+            text-shadow:
+              0 0 2px rgba(255,255,255,0.9),
+              0 0 8px rgba(255,255,255,0.65),
+              0 0 18px rgba(255,255,255,0.5),
+              0 0 34px rgba(255,255,255,0.35);
+          "
+        >
+          Made by Kewin Olaisen · CEO
+        </div>
+      </div>
+    </section>
+
+    <!-- LOWER AREA WRAPPER -->
+    <section class="relative overflow-hidden">
+      <!-- subtle dark overlay -->
+      <!-- Ambitions -->
+      <section id="ambitions" class="anchor-offset mx-auto max-w-6xl px-5 pb-20 pt-14">
+        <h2 class="text-2xl font-semibold md:text-3xl">Ambitions</h2>
+
+        <div class="group relative mt-3 max-w-2xl pl-6">
+          <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
+          <p class="leading-relaxed text-white/75">
+            I focus on practical AI applications, thoughtful web design, and early-stage AI product concepts,
+            building websites, web applications, and custom tools designed for real-world use.
+            The goal is to turn ideas into clear, usable systems - not demos or hype.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Practical AI applications</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Real-world AI use cases - applied, testable, and built to be used.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Web design that ships</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Clean landing pages and web apps with fast UX, clarity, and maintainability.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">AI product concepts</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Early-stage ideas, prototypes, and platforms - scoped like real products.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Current direction</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Building a small portfolio of concepts and prototypes - marketplaces, operations tooling, and future utilities.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Projects</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          A few active threads. This list will evolve.
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Sharge Share</div>
+            <div class="mt-2 text-sm text-white/65">P2P home-charging marketplace concept.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Draft / Partner outreach</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Crew-post</div>
+            <div class="mt-2 text-sm text-white/65">Internal handover notes for restaurant operations.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Prototype</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Future briefs</div>
+            <div class="mt-2 text-sm text-white/65">Short notes on tools, patterns, and strategy.</div>
+            <div class="mt-4 text-xs text-white/50">Status: In progress</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Focus (added so the menu link works) -->
+      <section id="focus" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Focus</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          I care about clarity, usefulness, and shipping. A few guiding principles:
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Signal over noise</div>
+            <div class="mt-2 text-sm text-white/65">Reduce complexity. Keep the core understandable.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Systems that run</div>
+            <div class="mt-2 text-sm text-white/65">Practical tools with real workflows in mind.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Iterate fast</div>
+            <div class="mt-2 text-sm text-white/65">Small releases, learning loops, and continuous improvement.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="anchor-offset mx-auto max-w-6xl px-5 pb-24">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-10">
+          <h2 class="text-2xl font-semibold md:text-3xl">Contact</h2>
+          <p class="mt-3 max-w-2xl text-white/70">
+            Want to collaborate, give feedback, or just say hi? Send a message.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90"
+               href="mailto:kewinolaisen@yahoo.no">
+              Email
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/kewin-olaisen-287204338/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="LinkedIn profile"
+            >
+              <img src="assets/linkedin.png" alt="LinkedIn" class="h-5 w-5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="https://substack.com/@kewinolaisen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="Substack"
+            >
+              <img src="assets/substack.png" alt="Substack" class="h-4 w-4" />
+              <span>Substack</span>
+            </a>
+          </div>
+
+          <div class="mt-6 text-xs text-white/50">
+            (c) <span class="js-year"></span> Built by futurebrief.no
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-wrap">
+        <div class="footer-inner">
+          <div class="footer-card">
+            <div class="footer-grid">
+              <div>
+                <div class="footer-title">Product</div>
+                <a class="footer-link" href="features.html">Features</a>
+                <a class="footer-link" href="pricing.html">Pricing</a>
+                <a class="footer-link" href="testimonials.html">Testimonials</a>
+                <a class="footer-link" href="integration.html">Integration</a>
+              </div>
+              <div>
+                <div class="footer-title">Company</div>
+                <a class="footer-link" href="faqs.html">FAQs</a>
+                <a class="footer-link" href="about.html">About Us</a>
+                <a class="footer-link" href="privacy.html">Privacy Policy</a>
+                <a class="footer-link" href="terms.html">Terms of Services</a>
+              </div>
+              <div>
+                <div class="footer-title">Resources</div>
+                <a class="footer-link" href="blog.html">Blog</a>
+                <a class="footer-link" href="changelog.html">Changelog</a>
+                <a class="footer-link" href="brand.html">Brand</a>
+                <a class="footer-link" href="help.html">Help</a>
+              </div>
+            </div>
+            <div class="footer-meta">(c) <span class="js-year"></span> FutureBrief. All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <p id="cookie-text"></p>
+        <a id="cookie-link" href="personvern.html">Les mer</a>
+      </div>
+      <div class="cookie-banner__actions">
+        <button id="cookie-accept-all" class="cookie-btn cookie-btn--primary">Godta alle</button>
+        <button id="cookie-accept-necessary" class="cookie-btn cookie-btn--secondary">Bare nødvendige</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Year (handles multiple places safely)
+    document.querySelectorAll('.js-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    // Deep System Field - subtle animated background
+    (() => {
+      const c = document.getElementById('fx-bg');
+      if (!c) {
+        console.error('Canvas #fx-bg not found');
+        return;
+      }
+      
+      const ctx = c.getContext('2d', { alpha: true });
+      if (!ctx) {
+        console.error('Failed to get 2D context');
+        return;
+      }
+      
+      let w = 0, h = 0, dpr = 1;
+      let time = 0;
+      let animFrameId = null;
+      
+      // Check if user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function resize() {
+        dpr = window.devicePixelRatio || 1;
+        w = c.width = Math.floor(window.innerWidth * dpr);
+        h = c.height = Math.floor(window.innerHeight * dpr);
+        c.style.width = window.innerWidth + 'px';
+        c.style.height = window.innerHeight + 'px';
+      }
+
+      function drawFrame() {
+        // Clear canvas
+        ctx.clearRect(0, 0, w, h);
+
+        // Base dark gradient (graphite to deep navy)
+        const baseGradient = ctx.createLinearGradient(0, 0, 0, h);
+        baseGradient.addColorStop(0, '#0a0e1f');    // Very dark navy
+        baseGradient.addColorStop(0.5, '#0f0f1f');   // Graphite
+        baseGradient.addColorStop(1, '#08091a');     // Almost black
+
+        ctx.fillStyle = baseGradient;
+        ctx.fillRect(0, 0, w, h);
+
+        // Subtle radial highlights (faint field nodes)
+        const highlight1 = ctx.createRadialGradient(w * 0.25, h * 0.25, 0, w * 0.25, h * 0.25, Math.max(w, h) * 0.6);
+        highlight1.addColorStop(0, 'rgba(45, 85, 140, 0.08)');
+        highlight1.addColorStop(1, 'rgba(45, 85, 140, 0)');
+        ctx.fillStyle = highlight1;
+        ctx.fillRect(0, 0, w, h);
+
+        const highlight2 = ctx.createRadialGradient(w * 0.75, h * 0.6, 0, w * 0.75, h * 0.6, Math.max(w, h) * 0.55);
+        highlight2.addColorStop(0, 'rgba(25, 55, 85, 0.06)');
+        highlight2.addColorStop(1, 'rgba(25, 55, 85, 0)');
+        ctx.fillStyle = highlight2;
+        ctx.fillRect(0, 0, w, h);
+
+        // Draw flowing field lines (wave-like, horizontal drift)
+        if (!prefersReducedMotion) {
+          ctx.strokeStyle = 'rgba(80, 110, 160, 0.1)';
+          ctx.lineWidth = 1.5;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          const lineCount = 6;
+          for (let i = 0; i < lineCount; i++) {
+            const yBase = (h / (lineCount + 1)) * (i + 1);
+            const amplitude = 20;
+            const frequency = 0.005;
+            const speed = 0.55;
+
+            ctx.beginPath();
+            for (let x = 0; x <= w; x += 12) {
+              const y = yBase + Math.sin((x * frequency) + (time * speed) + (i * 0.5)) * amplitude;
+              if (x === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            }
+            ctx.stroke();
+          }
+
+          // Add subtle vertical drift lines
+          ctx.strokeStyle = 'rgba(60, 95, 140, 0.05)';
+          ctx.lineWidth = 0.8;
+
+          const verticalLineCount = 8;
+          for (let i = 0; i < verticalLineCount; i++) {
+            const xBase = (w / (verticalLineCount + 1)) * (i + 1);
+            const drift = 35;
+
+            ctx.beginPath();
+            for (let y = 0; y <= h; y += 12) {
+              const x = xBase + Math.sin((y * 0.0035) + (time * 0.3) + i) * drift;
+              if (y === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            }
+            ctx.stroke();
+          }
+        }
+
+        // Update time for animation
+        time += 0.32; // Animation speed
+      }
+
+      let last = 0;
+const targetMs = 1000 / 30; // 30fps
+
+function animate(t) {
+  if (document.hidden) return;
+  if (t - last >= targetMs) {
+    last = t;
+    drawFrame(t);
+  }
+  requestAnimationFrame(animate);
+}
+
+
+      function startAnimation() {
+        if (prefersReducedMotion) {
+          // Draw static frame for reduced motion
+          drawFrame();
+        } else {
+          animate();
+        }
+      }
+
+      // Handle visibility change (pause animation when tab hidden)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (animFrameId) {
+            cancelAnimationFrame(animFrameId);
+            animFrameId = null;
+          }
+        } else {
+          startAnimation();
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        resize();
+      }, { passive: true });
+
+      resize();
+      startAnimation();
+    })();
+
+    // Cookie consent (simple, language-aware)
+    (function () {
+      const key = 'cookieConsent';
+      const banner = document.getElementById('cookie-banner');
+      const textEl = document.getElementById('cookie-text');
+      const linkEl = document.getElementById('cookie-link');
+      const acceptAll = document.getElementById('cookie-accept-all');
+      const acceptNecessary = document.getElementById('cookie-accept-necessary');
+
+      if (!banner || !textEl || !linkEl || !acceptAll || !acceptNecessary) return;
+
+      const lang = (document.documentElement.lang || 'en').toLowerCase();
+      const isNo = lang.startsWith('no');
+
+      textEl.textContent = isNo
+        ? 'Dette nettstedet bruker informasjonskapsler. Noen er nødvendige for at nettstedet skal fungere, mens andre hjelper oss å forbedre opplevelsen.'
+        : 'This website uses cookies. Some are necessary for the site to work, while others help improve your experience.';
+
+      linkEl.textContent = isNo ? 'Les mer' : 'Learn more';
+      linkEl.setAttribute('href', isNo ? 'personvern.html' : 'privacy.html');
+
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        localStorage.removeItem(key);
+      }
+
+      acceptAll.textContent = isNo ? 'Godta alle' : 'Accept all';
+      acceptNecessary.textContent = isNo ? 'Bare nødvendige' : 'Necessary only';
+
+      const saved = localStorage.getItem(key);
+      if (saved === 'all' || saved === 'necessary') {
+        window.__cookieConsent = saved;
+        return;
+      }
+
+      banner.classList.remove('hidden');
+
+      function setConsent(value) {
+        localStorage.setItem(key, value);
+        window.__cookieConsent = value;
+        banner.classList.add('hidden');
+      }
+
+      acceptAll.addEventListener('click', () => setConsent('all'));
+      acceptNecessary.addEventListener('click', () => setConsent('necessary'));
+    })();
+
+  </script>
+ <script>
+(() => {
+  const hero = document.querySelector('section.relative.w-full');
+  if (!hero || document.getElementById('bg-field')) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.id = 'bg-field';
+  Object.assign(canvas.style, {
+    position: 'absolute',
+    inset: '0',
+    width: '100%',
+    height: '100%',
+    zIndex: '0',
+    pointerEvents: 'none'
+  });
+
+  hero.style.position ||= 'relative';
+  hero.insertBefore(canvas, hero.firstChild);
+
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0;
+  const dpr = 1; // LÅST for ytelse
+  let time = 0;
+
+  function resize() {
+    const r = hero.getBoundingClientRect();
+    w = Math.max(1, Math.floor(r.width * dpr));
+    h = Math.max(1, Math.floor(r.height * dpr));
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+    }
+  }
+
+  function draw() {
+    resize();
+    ctx.clearRect(0, 0, w, h);
+
+    // Base gradient
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, '#05070c');
+    g.addColorStop(0.6, '#071022');
+    g.addColorStop(1, '#04050a');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // Subtle flowing lines
+    ctx.lineWidth = 1.2;
+
+    const lines = 6;
+    const amp = h * 0.03;
+
+    for (let i = 0; i < lines; i++) {
+      const y0 = h * (0.25 + 0.5 * (i / (lines - 1)));
+      const phase = i * 0.7;
+
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 12) {
+        const nx = x / w;
+        const y =
+          y0 +
+          Math.sin(nx * 6 + time + phase) * amp;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+     ctx.strokeStyle = `rgba(255, 160, 40, ${0.22 + i * 0.05})`;
+
+
+
+      ctx.stroke();
+    }
+  }
+
+  function animate() {
+    time += 0.006; // sakte, stabil bevegelse
+    draw();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', draw);
+  draw();
+  requestAnimationFrame(animate);
+})();
+</script>

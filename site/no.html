@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <title>FutureBrief - Konsepter, plattformer og signaler for det neste tiåret med AI</title>
+  <meta name="description" content="FutureBrief utforsker praktiske AI-bruksområder, gjennomtenkt webdesign og tidlige produktkonsepter bygget for ekte behov." />
+
+  <!-- SEO: canonical + hreflang -->
+  <link rel="canonical" href="https://futurebrief.no/no.html" />
+  <link rel="alternate" hreflang="en" href="https://futurebrief.no/"/>
+  <link rel="alternate" hreflang="no" href="https://futurebrief.no/no.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://futurebrief.no/"/>
+
+  <!-- Social preview -->
+  <meta property="og:title" content="FutureBrief - Konsepter, plattformer og signaler for det neste tiåret med AI" />
+  <meta property="og:description" content="FutureBrief utforsker praktiske AI-bruksområder, gjennomtenkt webdesign og tidlige produktkonsepter bygget for ekte behov." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://futurebrief.no/no.html" />
+  <meta property="og:image" content="https://futurebrief.no/assets/og-image-no.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Tailwind via CDN (ingen build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    canvas { touch-action: none; }
+    html { scroll-behavior: smooth; }
+
+    #fx-bg{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(1200px 600px at 70% 30%, rgba(120,90,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 20% 70%, rgba(0,190,255,.14), transparent 65%),
+        #000;
+    }
+    main{ position: relative; z-index: 1; }
+
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border:2px solid rgba(255,255,255,.9);
+      border-radius:9999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.95);
+      font-size:.85rem;
+      font-weight:700;
+      letter-spacing:.2px;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,1);
+    }
+    .nav-btn:active{ transform: translateY(0); }
+
+    .nav-btn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35);
+    }
+
+    .anchor-offset { scroll-margin-top: 90px; }
+
+    .info-card{
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .info-card:hover{
+      transform: translateY(-6px) scale(1.01);
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+
+    .footer-wrap { width:100%; padding: 48px 24px; }
+    .footer-inner { max-width: 1100px; margin-left:auto; text-align: right; }
+    .footer-card { border: 1px solid rgba(255,255,255,.10); border-radius: 22px; background: rgba(10,10,12,.35); backdrop-filter: blur(10px); position: relative; z-index: 1; }
+    .footer-grid { display:grid; gap: 28px; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 26px; }
+    .footer-title { font-weight:600; opacity:.9; margin-bottom:12px; }
+    .footer-link { display:block; padding: 8px 0; opacity:.7; text-decoration:none; }
+    .footer-link:hover { opacity: 1; }
+    .footer-meta { padding: 0 26px 22px 26px; opacity:.55; font-size: 14px; }
+    @media (max-width: 900px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+    .cookie-banner{
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.96);
+      color: #0b0b0b;
+      box-shadow: 0 16px 40px rgba(0,0,0,.15);
+    }
+    .cookie-banner__inner{
+      display:flex;
+      flex-direction: column;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .cookie-banner__content{
+      font-size: .92rem;
+      color: rgba(0,0,0,.7);
+    }
+    .cookie-banner__content a{
+      display: inline-block;
+      margin-top: .35rem;
+      color: rgba(0,0,0,.7);
+      text-decoration: none;
+    }
+    .cookie-banner__content a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .cookie-banner__actions{
+      display:flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .cookie-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.55rem .9rem;
+      border-radius: .75rem;
+      font-size:.85rem;
+      font-weight:700;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .cookie-btn--primary{
+      background:#0b0b0b;
+      color:#ffffff;
+      border: 1px solid #0b0b0b;
+    }
+    .cookie-btn--primary:hover{
+      background:#111111;
+    }
+    .cookie-btn--secondary{
+      background: transparent;
+      color:#0b0b0b;
+      border: 1px solid rgba(0,0,0,.18);
+    }
+    .cookie-btn--secondary:hover{
+      background: rgba(0,0,0,.04);
+    }
+
+    @media (min-width: 768px){
+      .cookie-banner__inner{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cookie-banner__actions{
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-neutral-950 text-neutral-100">
+  <canvas id="fx-bg" aria-hidden="true"></canvas>
+  <!-- Top bar -->
+  <header id="top" class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-5 py-2 flex items-center justify-between">
+
+      <!-- LOGO (venstre) -->
+      <a href="#top" class="flex items-center">
+        <img
+          src="assets/logo.png"
+          alt="Future AI Brief logo"
+          class="h-16 w-auto"
+        />
+      </a>
+
+      <!-- MENY (høyre) -->
+      <nav class="flex gap-3 items-center">
+        <a class="nav-btn" href="#projects">Prosjekter</a>
+        <a class="nav-btn" href="#ambitions">Ambisjoner</a>
+        <a class="nav-btn" href="#focus">Fokus</a>
+        <a class="nav-btn" href="#contact">Kontakt</a>
+
+        <!-- Språk -->
+        <a class="nav-btn" href="index.html" aria-label="Bytt til engelsk">EN</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="relative">
+    <!-- HERO med shader -->
+    <section class="hero relative w-full h-[calc(100vh-73px)] overflow-hidden bg-transparent pt-24">
+
+      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65"></div>
+
+      <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-5 pb-16 pt-14 md:pb-24 md:pt-20">
+        <h1 class="text-balance text-4xl font-semibold leading-tight md:text-6xl">
+          Konsepter, plattformer og signaler for det neste tiåret med AI.
+        </h1>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#projects"
+             class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90">
+            Se prosjekter
+          </a>
+          <a href="#ambitions"
+             class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10">
+            Se ambisjoner
+          </a>
+        </div>
+
+        <div class="mt-10 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Klar tenkning</div>
+            <div class="mt-1 text-sm text-white/65">Korte briefs, uten hype. Bare nyttig struktur.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Bygg først</div>
+            <div class="mt-1 text-sm text-white/65">Prototyper, landingssider og "proof-of-work".</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-sm font-semibold">Fremtidig nytte</div>
+            <div class="mt-1 text-sm text-white/65">Markedsplasser, energi og systemer i virkeligheten.</div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-xs text-white/50">
+          Tips: Beveg musen (eller bruk touch) på bakgrunnen i hero.
+        </div>
+      </div>
+    </section>
+
+    <!-- LOWER AREA WRAPPER -->
+    <section class="relative overflow-hidden">
+      <!-- Ambitions -->
+      <section id="ambitions" class="anchor-offset mx-auto max-w-6xl px-5 pb-20 pt-14">
+        <h2 class="text-2xl font-semibold md:text-3xl">Ambisjoner</h2>
+
+        <div class="group relative mt-3 max-w-2xl pl-6">
+          <span class="absolute left-0 top-0 h-full w-[2px] bg-white/20 transition group-hover:bg-white/60"></span>
+          <p class="leading-relaxed text-white/75">
+            Jeg fokuserer på praktiske AI-bruksområder, gjennomtenkt webdesign og tidlige produktkonsepter,
+            og bygger nettsider, webapplikasjoner og spesialtilpassede verktøy for ekte behov.
+            Målet er å gjøre idéer om til tydelige, brukbare systemer - ikke demoer eller hype.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Praktiske AI-bruksområder</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Reelle use cases - testbare, nyttige og bygget for å brukes.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Webdesign som leveres</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Rene landingssider og webapper med rask UX, tydelighet og vedlikeholdbarhet.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">AI-produktkonsepter</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Tidlige idéer, prototyper og plattformer - scoped som ekte produkter.
+            </div>
+          </article>
+
+          <article class="info-card">
+            <h3 class="text-sm font-semibold text-white">Nåværende retning</h3>
+            <div class="mt-2 text-sm text-white/70">
+              Bygger en liten portefølje av konsepter og prototyper - markedsplasser, drift/verktøy og fremtidsnytte.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Prosjekter</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          Noen aktive spor. Denne listen vil utvikle seg.
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Sharge Share</div>
+            <div class="mt-2 text-sm text-white/65">Konsept: P2P markedsplass for hjemmelading.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Utkast / partnerdialog</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Crew-post</div>
+            <div class="mt-2 text-sm text-white/65">Overleveringsnotater for restaurantdrift.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Prototype</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Future briefs</div>
+            <div class="mt-2 text-sm text-white/65">Korte notater om verktøy, mønstre og strategi.</div>
+            <div class="mt-4 text-xs text-white/50">Status: Pågår</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Focus -->
+      <section id="focus" class="anchor-offset mx-auto max-w-6xl px-5 pb-20">
+        <h2 class="text-2xl font-semibold md:text-3xl">Fokus</h2>
+        <p class="mt-3 max-w-2xl text-white/70">
+          Jeg bryr meg om tydelighet, nytte og å levere. Noen prinsipper:
+        </p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Signal over støy</div>
+            <div class="mt-2 text-sm text-white/65">Reduser kompleksitet. Behold kjernen forståelig.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Systemer som fungerer</div>
+            <div class="mt-2 text-sm text-white/65">Praktiske verktøy med ekte arbeidsflyt i tankene.</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="text-sm font-semibold">Rask iterasjon</div>
+            <div class="mt-2 text-sm text-white/65">Små releaser, læringssløyfer og forbedring.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="anchor-offset mx-auto max-w-6xl px-5 pb-24">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-10">
+          <h2 class="text-2xl font-semibold md:text-3xl">Kontakt</h2>
+          <p class="mt-3 max-w-2xl text-white/70">
+            Vil du samarbeide, gi feedback eller bare si hei" Send en melding.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:bg-white/90"
+               href="mailto:kewinolaisen@yahoo.no">
+              E-post
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/kewin-olaisen-287204338/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="LinkedIn"
+            >
+              <img src="assets/linkedin.png" alt="LinkedIn" class="h-5 w-5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="https://substack.com/@kewinolaisen"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nav-btn inline-flex items-center gap-2"
+              aria-label="Substack"
+            >
+              <img src="assets/substack.png" alt="Substack" class="h-4 w-4" />
+              <span>Substack</span>
+            </a>
+          </div>
+
+          <div class="mt-6 text-xs text-white/50">
+            (c) <span class="js-year"></span> Built by futurebrief.no
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-wrap">
+        <div class="footer-inner">
+          <div class="footer-card">
+            <div class="footer-grid">
+              <div>
+                <div class="footer-title">Produkt</div>
+                <a class="footer-link" href="funksjoner.html">Funksjoner</a>
+                <a class="footer-link" href="priser.html">Priser</a>
+                <a class="footer-link" href="anmeldelser.html">Anmeldelser</a>
+                <a class="footer-link" href="integrasjoner.html">Integrasjoner</a>
+              </div>
+              <div>
+                <div class="footer-title">Selskap</div>
+                <a class="footer-link" href="faq.html">FAQ</a>
+                <a class="footer-link" href="om.html">Om</a>
+                <a class="footer-link" href="personvern.html">Personvern</a>
+                <a class="footer-link" href="vilkar.html">Vilkår</a>
+              </div>
+              <div>
+                <div class="footer-title">Ressurser</div>
+                <a class="footer-link" href="blogg.html">Blogg</a>
+                <a class="footer-link" href="endringslogg.html">Endringslogg</a>
+                <a class="footer-link" href="profil.html">Profil</a>
+                <a class="footer-link" href="hjelp.html">Hjelp</a>
+              </div>
+            </div>
+            <div class="footer-meta">(c) <span class="js-year"></span> FutureBrief. Alle rettigheter reservert.</div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <p id="cookie-text"></p>
+        <a id="cookie-link" href="personvern.html">Les mer</a>
+      </div>
+      <div class="cookie-banner__actions">
+        <button id="cookie-accept-all" class="cookie-btn cookie-btn--primary">Godta alle</button>
+        <button id="cookie-accept-necessary" class="cookie-btn cookie-btn--secondary">Bare nødvendige</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.js-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    (() => {
+      const c = document.getElementById('fx-bg');
+      if (!c) return;
+      const ctx = c.getContext('2d', { alpha: true });
+      let w = 0, h = 0, dpr = 1, particles = [], mx = 0, my = 0, tx = 0, ty = 0;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = c.width = Math.floor(window.innerWidth * dpr);
+        h = c.height = Math.floor(window.innerHeight * dpr);
+        c.style.width = window.innerWidth + 'px';
+        c.style.height = window.innerHeight + 'px';
+
+        particles = Array.from({ length: 52 }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: (18 + Math.random() * 60) * dpr,
+          vx: (-0.22 + Math.random() * 0.44) * dpr,
+          vy: (-0.22 + Math.random() * 0.44) * dpr,
+          a: 0.06 + Math.random() * 0.10
+        }));
+      }
+
+      function draw() {
+        mx += (tx - mx) * 0.06;
+        my += (ty - my) * 0.06;
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'lighter';
+
+        ctx.fillStyle = 'rgba(0,0,0,0.35)';
+        ctx.fillRect(0, 0, w, h);
+
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < -p.r) p.x = w + p.r;
+          if (p.x > w + p.r) p.x = -p.r;
+          if (p.y < -p.r) p.y = h + p.r;
+          if (p.y > h + p.r) p.y = -p.r;
+
+          const px = p.x + (mx - w * 0.5) * 0.02;
+          const py = p.y + (my - h * 0.5) * 0.02;
+
+          const g = ctx.createRadialGradient(px, py, 0, px, py, p.r);
+          g.addColorStop(0, `rgba(160,120,255,${p.a})`);
+          g.addColorStop(0.45, `rgba(0,200,255,${p.a * 0.55})`);
+          g.addColorStop(1, 'rgba(0,0,0,0)');
+
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(px, py, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.globalCompositeOperation = 'source-over';
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      window.addEventListener('pointermove', (e) => {
+        tx = e.clientX * dpr;
+        ty = e.clientY * dpr;
+      }, { passive: true });
+
+      resize();
+      tx = window.innerWidth * dpr * 0.5;
+      ty = window.innerHeight * dpr * 0.5;
+      draw();
+    })();
+
+    // Cookie consent (simple, language-aware)
+    (function () {
+      const key = 'cookieConsent';
+      const banner = document.getElementById('cookie-banner');
+      const textEl = document.getElementById('cookie-text');
+      const linkEl = document.getElementById('cookie-link');
+      const acceptAll = document.getElementById('cookie-accept-all');
+      const acceptNecessary = document.getElementById('cookie-accept-necessary');
+
+      if (!banner || !textEl || !linkEl || !acceptAll || !acceptNecessary) return;
+
+      const lang = (document.documentElement.lang || 'en').toLowerCase();
+      const isNo = lang.startsWith('no');
+
+      textEl.textContent = isNo
+        ? 'Dette nettstedet bruker informasjonskapsler. Noen er nødvendige for at nettstedet skal fungere, mens andre hjelper oss å forbedre opplevelsen.'
+        : 'This website uses cookies. Some are necessary for the site to work, while others help improve your experience.';
+
+      linkEl.textContent = isNo ? 'Les mer' : 'Learn more';
+      linkEl.setAttribute('href', isNo ? 'personvern.html' : 'privacy.html');
+
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        localStorage.removeItem(key);
+      }
+
+      acceptAll.textContent = isNo ? 'Godta alle' : 'Accept all';
+      acceptNecessary.textContent = isNo ? 'Bare nødvendige' : 'Necessary only';
+
+      const saved = localStorage.getItem(key);
+      if (saved === 'all' || saved === 'necessary') {
+        window.__cookieConsent = saved;
+        return;
+      }
+
+      banner.classList.remove('hidden');
+
+      function setConsent(value) {
+        localStorage.setItem(key, value);
+        window.__cookieConsent = value;
+        banner.classList.add('hidden');
+      }
+
+      acceptAll.addEventListener('click', () => setConsent('all'));
+      acceptNecessary.addEventListener('click', () => setConsent('necessary'));
+    })();
+
+  </script>
+</body>
+</html>
