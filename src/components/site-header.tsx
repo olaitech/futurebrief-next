@@ -1,19 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 type NavItem = { label: string; href: string };
 
-const NAV: NavItem[] = [
-  { label: "Projects", href: "#projects" },
-  { label: "Ambitions", href: "#ambitions" },
-  { label: "Focus", href: "#focus" },
-  { label: "Contact", href: "#contact" },
-];
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // True hvis vi er på norsk route
+  const isNo = pathname === "/no" || pathname.startsWith("/no/");
+
+  // Nav labels avhenger av språk
+  const NAV: NavItem[] = useMemo(() => {
+    if (isNo) {
+      return [
+        { label: "Prosjekter", href: "#projects" },
+        { label: "Ambisjoner", href: "#ambitions" },
+        { label: "Fokus", href: "#focus" },
+        { label: "Kontakt", href: "#contact" },
+      ];
+    }
+    return [
+      { label: "Projects", href: "#projects" },
+      { label: "Ambitions", href: "#ambitions" },
+      { label: "Focus", href: "#focus" },
+      { label: "Contact", href: "#contact" },
+    ];
+  }, [isNo]);
+
+  // Språk-toggle
+  const langLabel = isNo ? "EN" : "NO";
+  const langHref = isNo ? "/" : "/no";
+  const langAria = isNo ? "Switch to English" : "Bytt til norsk";
 
   // Lukk meny ved ESC
   useEffect(() => {
@@ -70,25 +91,27 @@ export function SiteHeader() {
 
             {/* Language pill */}
             <a
-              href="/no"
+              href={langHref}
+              aria-label={langAria}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/10 hover:text-white"
             >
-              NO
+              {langLabel}
             </a>
           </div>
 
           {/* Mobile: Hamburger */}
           <div className="flex items-center gap-2 md:hidden">
             <a
-              href="/no"
+              href={langHref}
+              aria-label={langAria}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 backdrop-blur"
             >
-              NO
+              {langLabel}
             </a>
 
             <button
               type="button"
-              aria-label="Open menu"
+              aria-label={isNo ? "Åpne meny" : "Open menu"}
               onClick={() => setOpen(true)}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-white backdrop-blur transition hover:bg-white/10"
             >
@@ -115,16 +138,18 @@ export function SiteHeader() {
       {open && (
         <div className="fixed inset-0 z-50 md:hidden">
           <button
-            aria-label="Close menu"
+            aria-label={isNo ? "Lukk meny" : "Close menu"}
             onClick={() => setOpen(false)}
             className="absolute inset-0 bg-black/60"
           />
           <div className="absolute right-0 top-0 h-full w-[min(360px,90vw)] border-l border-white/10 bg-[#05070c]/95 p-6 backdrop-blur">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-semibold text-white">Menu</div>
+              <div className="text-sm font-semibold text-white">
+                {isNo ? "Meny" : "Menu"}
+              </div>
               <button
                 type="button"
-                aria-label="Close"
+                aria-label={isNo ? "Lukk" : "Close"}
                 onClick={() => setOpen(false)}
                 className="rounded-full border border-white/10 bg-white/5 p-2 text-white"
               >
@@ -160,11 +185,12 @@ export function SiteHeader() {
 
             <div className="mt-6 border-t border-white/10 pt-6">
               <a
-                href="/no"
+                href={langHref}
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                aria-label={langAria}
               >
-                Norsk (NO)
+                {isNo ? "English (EN)" : "Norsk (NO)"}
               </a>
             </div>
           </div>

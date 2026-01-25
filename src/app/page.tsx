@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { Hero } from "@/components/sections/hero";
 import { LampDivider } from "@/components/ui/lamp";
 import { AmbitionsSection } from "@/components/sections/ambitions";
