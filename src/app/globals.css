@@ -123,33 +123,162 @@
     @apply bg-background text-foreground;
   }
 }
+
 /* Menu buttons: white border, black center, white text, hover-lift */
-.nav-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.55rem .9rem;
-  border:2px solid rgba(255,255,255,.9);
-  border-radius:9999px;
-  background: rgba(0,0,0,.35);
-  color: rgba(255,255,255,.95);
-  font-size:.85rem;
-  font-weight:700;
-  letter-spacing:.2px;
-  transition: transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-  user-select:none;
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
-.nav-btn:hover{
+.nav-btn:hover {
   transform: translateY(-2px);
-  background: rgba(0,0,0,.55);
-  box-shadow: 0 12px 28px rgba(0,0,0,.35);
-  border-color: rgba(255,255,255,1);
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 1);
 }
-.nav-btn:active{ transform: translateY(0); }
-
-.nav-btn:focus-visible{
+.nav-btn:active {
+  transform: translateY(0);
+}
+.nav-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25), 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* === Glassy animated backdrop (stable + visible) === */
+
+@keyframes glassShiftA {
+  0% {
+    transform: translate3d(-3%, -2%, 0) rotate(-0.8deg) scale(1.04);
+    filter: blur(0.6px);
+  }
+  50% {
+    transform: translate3d(3%, 2.2%, 0) rotate(0.8deg) scale(1.08);
+    filter: blur(0.95px);
+  }
+  100% {
+    transform: translate3d(-3%, -2%, 0) rotate(-0.8deg) scale(1.04);
+    filter: blur(0.6px);
+  }
+}
+
+@keyframes glassShiftB {
+  0% {
+    transform: translate3d(3%, 2%, 0) rotate(0.6deg) scale(1.03);
+  }
+  50% {
+    transform: translate3d(-3%, -2.2%, 0) rotate(-0.6deg) scale(1.07);
+  }
+  100% {
+    transform: translate3d(3%, 2%, 0) rotate(0.6deg) scale(1.03);
+  }
+}
+
+@keyframes glassSheen {
+  0% {
+    background-position: 0% 0%, 0% 0%;
+    opacity: 0.38;
+  }
+  50% {
+    background-position: 100% 55%, -55% 100%;
+    opacity: 0.56;
+  }
+  100% {
+    background-position: 0% 0%, 0% 0%;
+    opacity: 0.38;
+  }
+}
+
+/* Use this on the card container instead of Tailwind shadow-[...] */
+.glass-card-shadow {
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* The backdrop element you insert as first child inside the card */
+.glassy-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+
+  opacity: 0.92;
+  filter: saturate(1.12) contrast(1.06);
+  transform: translateZ(0);
+
+  /* Static base tint (fallback even if pseudo-layers fail) */
+  background:
+    radial-gradient(1200px 600px at 15% 25%, rgba(139, 92, 246, 0.26), transparent 58%),
+    radial-gradient(900px 500px at 85% 30%, rgba(56, 189, 248, 0.20), transparent 58%),
+    radial-gradient(1100px 650px at 50% 90%, rgba(16, 185, 129, 0.14), transparent 62%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03) 40%, rgba(0, 0, 0, 0));
+}
+
+.glassy-backdrop::before,
+.glassy-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Caustics / drifting gradient “fog” */
+.glassy-backdrop::before {
+  background:
+    radial-gradient(720px 420px at 18% 22%, rgba(139, 92, 246, 0.22), rgba(0, 0, 0, 0) 62%),
+    radial-gradient(520px 360px at 78% 70%, rgba(56, 189, 248, 0.18), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(420px 280px at 52% 42%, rgba(16, 185, 129, 0.12), rgba(0, 0, 0, 0) 64%);
+  opacity: 0.95;
+  filter: blur(18px) saturate(1.15);
+  transform: translateZ(0);
+  animation: glassShiftA 16s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+/* Sheen + vignette for readability (counter-motion + shimmer loop) */
+.glassy-backdrop::after {
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.10) 0px,
+      rgba(255, 255, 255, 0.03) 18px,
+      rgba(0, 0, 0, 0.00) 44px
+    ),
+    repeating-linear-gradient(
+      25deg,
+      rgba(56, 189, 248, 0.08) 0px,
+      rgba(139, 92, 246, 0.05) 22px,
+      rgba(0, 0, 0, 0.00) 62px
+    ),
+    radial-gradient(60% 60% at 50% 40%, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.58));
+  background-size: 180% 180%, 200% 200%, 100% 100%;
+  opacity: 0.55;
+  transform: translateZ(0);
+  animation: glassShiftB 22s ease-in-out infinite, glassSheen 26s linear infinite;
+  will-change: transform, background-position, opacity;
+}
+
+/* Reduced motion: disable animations */
+@media (prefers-reduced-motion: reduce) {
+  .glassy-backdrop::before,
+  .glassy-backdrop::after {
+    animation: none;
+  }
 }
