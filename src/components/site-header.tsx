@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type NavItem = { label: string; href: string };
+type NavItem = { label: string; href: string; isRoute?: boolean };
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -17,14 +18,14 @@ export function SiteHeader() {
   const NAV: NavItem[] = useMemo(() => {
     if (isNo) {
       return [
-        { label: "Prosjekter", href: "#projects" },
+        { label: "Prosjekter", href: "/no/projects", isRoute: true },
         { label: "Ambisjoner", href: "#ambitions" },
         { label: "Fokus", href: "#focus" },
         { label: "Kontakt", href: "#contact" },
       ];
     }
     return [
-      { label: "Projects", href: "#projects" },
+      { label: "Projects", href: "/projects", isRoute: true },
       { label: "Ambitions", href: "#ambitions" },
       { label: "Focus", href: "#focus" },
       { label: "Contact", href: "#contact" },
@@ -78,12 +79,22 @@ export function SiteHeader() {
               <ul className="flex items-center gap-1">
                 {NAV.map((item) => (
                   <li key={item.href}>
-                    <a
-                      href={item.href}
-                      className="rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
-                    >
-                      {item.label}
-                    </a>
+                    {item.isRoute ? (
+                      <Link
+                        href={item.href}
+                        className="rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                        onClick={() => setOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -172,14 +183,25 @@ export function SiteHeader() {
 
             <div className="mt-6 grid gap-2">
               {NAV.map((item) => (
-                <button
-                  key={item.href}
-                  type="button"
-                  onClick={() => handleNavClick(item.href)}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
-                >
-                  {item.label}
-                </button>
+                <div key={item.href}>
+                  {item.isRoute ? (
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleNavClick(item.href)}
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                    >
+                      {item.label}
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
 
