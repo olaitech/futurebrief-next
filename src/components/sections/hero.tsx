@@ -58,6 +58,9 @@ export function Hero() {
 
         <div className="mt-8 text-xs font-semibold tracking-wide text-white/80">
           Made by Kewin Olaisen · CEO
+          <p className="mt-3 text-sm text-white/70 max-w-xl">
+  I also design and build modern websites and prototypes for individuals and small teams. Contact me.
+</p>
         </div>
       </div>
     </section>

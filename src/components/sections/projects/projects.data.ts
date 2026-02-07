@@ -1,7 +1,10 @@
 export type Project = {
   id: string;
+
+  // Title and description are bilingual
   title: { en: string; no: string };
   desc: { en: string; no: string };
+
   tags: string[];
 
   /**
@@ -26,7 +29,7 @@ export const projects: Project[] = [
       no: "Glasskort som åpner seg til fullskjerm. Vis screenshot + åpne live side.",
     },
     tags: ["Glass", "Showcase", "Next.js"],
-    url: "https://dj-preb-z-i2q3.vercel.app/",
+    url: "https://dj-preb-z.vercel.app",
     image: "/projects-hero.png",
   },
   {
@@ -37,7 +40,20 @@ export const projects: Project[] = [
       no: "Live DJ-nettside med fokus på booking, visuell identitet og promotering.",
     },
     tags: ["Client", "Website", "Vercel"],
-    url: "https://dj-preb-z-i2q3.vercel.app/",
+    url: "https://dj-preb-z.vercel.app/",
     image: "/dj-prebz.png",
+  },
+  {
+    id: "sharge-share",
+    title: { en: "Sharge Share", no: "Sharge Share" },
+    desc: {
+      en: "Concept marketplace for sharing private EV chargers. Architecture and deck material ready.",
+      no: "Konsept-markedsplass for deling av private hjemmeladere. Arkitektur og presentasjonsmateriale klart.",
+    },
+    tags: ["Energy", "Marketplace", "Concept"],
+    // La stå tom hvis du ikke har live link enda. (Du kan også fjerne hele linja.)
+    url: "/decks/Sharge-Share-Airbnb-for-hjemmelading.pdf",
+    // Legg et bilde i /public først, f.eks: /public/sharge-share.png
+    image: "/sharge-share.png",
   },
 ];

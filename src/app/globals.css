@@ -282,3 +282,20 @@
     animation: none;
   }
 }
+@keyframes ambient-shine {
+  0% { transform: translateX(-60%); opacity: 0; }
+  10% { opacity: 1; }
+  50% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(60%); opacity: 0; }
+}
+
+.ambient-shine {
+  animation: ambient-shine 3.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-shine {
+    animation: none !important;
+  }
+}

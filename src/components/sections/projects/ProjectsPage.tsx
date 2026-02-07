@@ -29,7 +29,7 @@ export function ProjectsPage({ lang = "en" }: ProjectsPageProps) {
 
 {/* Optional vignette (still no blur) */}
 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.65)_70%,rgba(0,0,0,0.9)_100%)]" />
-
+                 
         {/* Content above background */}
         <div className="relative z-10">
           <div className="mx-auto max-w-6xl px-6 py-4 text-white/70">

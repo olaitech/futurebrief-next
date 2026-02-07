@@ -5,6 +5,7 @@ import { LampDivider } from "@/components/ui/lamp";
 import { AmbitionsSection } from "@/components/sections/ambitions";
 import { FocusSection } from "@/components/sections/focus";
 import { ContactSection } from "@/components/sections/contact";
+import AmbientDivider from "@/components/ui/ambient-divider";
 
 export const metadata: Metadata = {
   title: "Practical AI, Web Design & Early Product Concepts",
@@ -22,8 +23,12 @@ export default function Page() {
 
       <Hero />
       <LampDivider height={220} />
+
       <AmbitionsSection />
       <FocusSection />
+
+      <AmbientDivider />
+
       <ContactSection />
     </main>
   );

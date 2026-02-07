@@ -66,7 +66,10 @@ export function HeroNo() {
         </div>
 
         <div className="mt-8 text-xs font-semibold tracking-wide text-white/80">
-          Laget av Kewin Olaisen · CEO
+          Laget av Kewin Olaisen · CEO 
+          <p className="mt-3 text-sm text-white/70 max-w-xl">
+  Jeg designer og bygger moderne nettsider og prototyper for enkeltpersoner og små team. Kontakt meg.
+</p>
         </div>
       </div>
     </section>
