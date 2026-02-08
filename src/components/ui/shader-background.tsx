@@ -170,7 +170,8 @@ export default function ShaderBackground({
     const timeLoc = gl.getUniformLocation(shaderProgram, "iTime");
 
     let raf = 0;
-    let start = performance.now();
+   const start = performance.now();
+
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
