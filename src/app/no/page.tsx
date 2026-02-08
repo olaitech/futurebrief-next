@@ -1,26 +1,34 @@
-export const metadata = {
-  title: "Vilkår – FutureBrief",
-  description: "Bruksvilkår for FutureBrief.",
+// src/app/no/page.tsx
+import type { Metadata } from "next";
+
+import { HeroNo } from "@/components/sections/no/hero-no";
+import { AmbitionsSectionNo } from "@/components/sections/no/ambitions-no";
+import { FocusSectionNo } from "@/components/sections/no/focus-no";
+import { ContactSectionNo } from "@/components/sections/no/contact-no";
+import { LampDivider } from "@/components/ui/lamp";
+import AmbientDivider from "@/components/ui/ambient-divider";
+
+export const metadata: Metadata = {
+  title: "FutureBrief – Praktiske AI-løsninger",
+  description: "Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase.",
 };
 
-export default function TermsNoPage() {
+export default function NoPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 pb-20 pt-28">
-      <section className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-10">
-        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-          Bruksvilkår
-        </h1>
+    <main className="bg-black">
+      <h1 className="sr-only">
+        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase
+      </h1>
 
-        <p className="mt-4 text-sm leading-relaxed text-white/70">
-          FutureBrief er en informativ nettside. Eventuelle samarbeid,
-          leveranser eller tidsrammer avtales skriftlig og avhenger av omfang.
-        </p>
+      <HeroNo />
+      <LampDivider height={220} />
 
-        <p className="mt-3 text-sm leading-relaxed text-white/70">
-          Innholdet tilbys slik det er, uten garantier. Eksterne lenker kan endres
-          eller fjernes uten varsel.
-        </p>
-      </section>
+      <AmbitionsSectionNo />
+      <FocusSectionNo />
+
+      <AmbientDivider />
+
+      <ContactSectionNo />
     </main>
   );
 }
