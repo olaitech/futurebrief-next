@@ -125,26 +125,24 @@ export function SiteHeader() {
             </nav>
 
             {/* Language pill */}
-            <button
-              type="button"
+            <a
+              href={getToggledLanguagePath()}
               aria-label={langAria}
-              onClick={() => router.push(getToggledLanguagePath())}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/10 hover:text-white"
             >
               {langLabel}
-            </button>
+            </a>
           </div>
 
           {/* Mobile: Hamburger */}
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              type="button"
+            <a
+              href={getToggledLanguagePath()}
               aria-label={langAria}
-              onClick={() => router.push(getToggledLanguagePath())}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 backdrop-blur"
             >
               {langLabel}
-            </button>
+            </a>
 
             <button
               type="button"

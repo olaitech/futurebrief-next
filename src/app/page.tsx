@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Practical AI, Web Design & Early Product Concepts",
   description:
     "FutureBrief builds practical AI applications, clean web experiences, and early-stage product concepts designed for real-world use.",
+  alternates: {
+    canonical: "https://futurebrief.net/",
+  },
 };
 
 export default function Page() {
