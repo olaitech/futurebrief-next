@@ -86,10 +86,10 @@ export function ProjectShowcase({ lang = "en" }: ProjectShowcaseProps) {
       {/* FULLSCREEN EXPAND */}
       {active ? (
         <div
-          className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm pt-[96px] pb-10 overflow-y-auto"
           onMouseDown={() => setActiveId(null)}
         >
-          <div className="absolute inset-0">
+          <div className="relative">
             {/* Underlay glow */}
             <div className="pointer-events-none absolute -inset-40 opacity-80 blur-3xl">
               <div className="absolute left-1/4 top-1/4 h-[520px] w-[520px] rounded-full bg-violet-500/18" />
@@ -98,7 +98,7 @@ export function ProjectShowcase({ lang = "en" }: ProjectShowcaseProps) {
 
             {/* Modal container */}
             <div
-              className="absolute left-1/2 top-1/2 w-[min(1100px,92vw)] -translate-x-1/2 -translate-y-1/2"
+              className="mx-auto w-[min(1100px,92vw)]"
               onMouseDown={(e) => e.stopPropagation()}
             >
               <div className="relative overflow-hidden rounded-[28px] border border-white/14 bg-white/6 backdrop-blur-xl shadow-[0_40px_140px_rgba(0,0,0,0.75)]">

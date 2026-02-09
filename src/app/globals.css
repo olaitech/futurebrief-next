@@ -299,3 +299,69 @@
     animation: none !important;
   }
 }
+@keyframes soft-pulse {
+  0% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.45;
+  }
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2.8s ease-in-out infinite;
+}
+@keyframes gravity-bounce {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  50% {
+    transform: translateY(-40px);
+    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rubber-morph {
+  0% { transform: scale(1.4, 0.6); }
+  5% { transform: scale(0.9, 1.1); }
+  15% { transform: scale(1, 1); }
+  50% { transform: scale(1, 1); }
+  85% { transform: scale(0.9, 1.1); }
+  100% { transform: scale(1.4, 0.6); }
+}
+
+@keyframes shadow-breathe {
+  0% { transform: scale(1.4); opacity: 0.6; }
+  50% { transform: scale(0.5); opacity: 0.1; }
+  100% { transform: scale(1.4); opacity: 0.6; }
+}
+
+@keyframes ripple-expand {
+  0% { transform: scale(0.5); opacity: 0; border-width: 4px; }
+  5% { opacity: 0.8; }
+  30% { transform: scale(1.5); opacity: 0; border-width: 0px; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-gravity-bounce {
+  animation: gravity-bounce 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.animate-rubber-morph {
+  animation: rubber-morph 1.4s linear infinite;
+}
+
+.animate-shadow-breathe {
+  animation: shadow-breathe 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.animate-ripple-expand {
+  animation: ripple-expand 1.4s linear infinite;
+}

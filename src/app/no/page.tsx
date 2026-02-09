@@ -10,14 +10,24 @@ import AmbientDivider from "@/components/ui/ambient-divider";
 
 export const metadata: Metadata = {
   title: "FutureBrief – Praktiske AI-løsninger",
-  description: "Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase.",
+  description:
+    "Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/no",
+    languages: {
+      "en-US": "https://www.futurebrief.net",
+      "nb-NO": "https://www.futurebrief.net/no",
+      "x-default": "https://www.futurebrief.net",
+    },
+  },
 };
 
 export default function NoPage() {
   return (
     <main className="bg-black">
       <h1 className="sr-only">
-        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase
+        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i
+        tidlig fase
       </h1>
 
       <HeroNo />

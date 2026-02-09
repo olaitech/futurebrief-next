@@ -12,7 +12,12 @@ export const metadata: Metadata = {
   description:
     "FutureBrief builds practical AI applications, clean web experiences, and early-stage product concepts designed for real-world use.",
   alternates: {
-    canonical: "https://futurebrief.net/",
+    canonical: "https://www.futurebrief.net",
+    languages: {
+      "en-US": "https://www.futurebrief.net",
+      "nb-NO": "https://www.futurebrief.net/no",
+      "x-default": "https://www.futurebrief.net",
+    },
   },
 };
 

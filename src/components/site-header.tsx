@@ -10,17 +10,15 @@ type NavItem = { label: string; href: string };
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
 
-  // True hvis vi er på norsk route
   const isNo = pathname === "/no" || pathname.startsWith("/no/");
-
-  // Bygg en “base path” som alltid peker til riktig “landing” for språket.
-  // Dette gjør at #anker funker uansett om du står på /no/terms eller /terms osv.
   const basePath = isNo ? "/no" : "/";
 
-  // Nav labels avhenger av språk
-  // Viktig: bruk /no#... og /#... (ikke bare #...), så det funker fra alle sider.
+  /* =============================
+     NAV ITEMS
+  ============================= */
+
   const NAV: NavItem[] = useMemo(() => {
     if (isNo) {
       return [
@@ -39,32 +37,36 @@ export function SiteHeader() {
     ];
   }, [isNo]);
 
-  // Språk-toggle (robust: behold samme path når mulig)
-  // /no/foo -> /foo
-  // /foo -> /no/foo
-  const langLabel = isNo ? "EN" : "NO";
-  const langAria = isNo ? "Switch to English" : "Bytt til norsk";
+  /* =============================
+     LANGUAGE TOGGLE (FIXED)
+  ============================= */
 
   function getToggledLanguagePath() {
-    // Normaliser tom/undefined
-    const current = pathname || "/";
-
     // Norsk -> Engelsk
     if (isNo) {
-      // "/no" -> "/"
-      if (current === "/no") return "/";
-      // "/no/xyz" -> "/xyz"
-      return current.replace(/^\/no(?=\/)/, "");
+      if (pathname === "/no") return "/";
+      return pathname.replace(/^\/no(?=\/)/, "");
     }
 
     // Engelsk -> Norsk
-    // "/" -> "/no"
-    if (current === "/") return "/no";
-    // "/xyz" -> "/no/xyz"
-    return `/no${current}`;
+
+    // ✅ Hvis vi er på R&D /projects eller case-side
+    if (pathname === "/projects" || pathname.startsWith("/projects/")) {
+      return "/no";
+    }
+
+    if (pathname === "/") return "/no";
+
+    return `/no${pathname}`;
   }
 
-  // Lukk meny ved ESC
+  const langLabel = isNo ? "EN" : "NO";
+  const langAria = isNo ? "Switch to English" : "Bytt til norsk";
+
+  /* =============================
+     EFFECTS
+  ============================= */
+
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -75,10 +77,6 @@ export function SiteHeader() {
 
   function handleNavigate(href: string) {
     setOpen(false);
-
-    // Interne lenker:
-    // - /no#ambitions -> push og la nettleseren hoppe til anker
-    // - /no/projects -> normal route
     router.push(href);
   }
 
@@ -88,12 +86,21 @@ export function SiteHeader() {
     router.push(basePath);
   }
 
+  /* =============================
+     RENDER
+  ============================= */
+
   return (
     <>
       <header className="fixed left-0 right-0 top-0 z-50">
         <div className="mx-auto flex h-[73px] max-w-6xl items-center justify-between px-6">
-          {/* Left: Logo */}
-          <a href={basePath} onClick={handleLogoClick} className="flex items-center gap-3">
+          
+          {/* Logo */}
+          <a
+            href={basePath}
+            onClick={handleLogoClick}
+            className="flex items-center gap-3"
+          >
             <Image
               src="/assets/logo.png"
               alt="FutureBrief"
@@ -106,7 +113,7 @@ export function SiteHeader() {
             </span>
           </a>
 
-          {/* Right: Desktop pill menu */}
+          {/* Desktop */}
           <div className="hidden items-center gap-3 md:flex">
             <nav className="rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur">
               <ul className="flex items-center gap-1">
@@ -124,25 +131,25 @@ export function SiteHeader() {
               </ul>
             </nav>
 
-            {/* Language pill */}
-            <a
+            {/* Language Switch */}
+            <Link
               href={getToggledLanguagePath()}
               aria-label={langAria}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/10 hover:text-white"
             >
               {langLabel}
-            </a>
+            </Link>
           </div>
 
-          {/* Mobile: Hamburger */}
+          {/* Mobile */}
           <div className="flex items-center gap-2 md:hidden">
-            <a
+            <Link
               href={getToggledLanguagePath()}
               aria-label={langAria}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 backdrop-blur"
             >
               {langLabel}
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -155,7 +162,6 @@ export function SiteHeader() {
                 height="22"
                 viewBox="0 0 24 24"
                 fill="none"
-                aria-hidden="true"
               >
                 <path
                   d="M4 7h16M4 12h16M4 17h16"
@@ -169,11 +175,10 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {/* Mobile drawer + overlay */}
+      {/* Mobile Drawer */}
       {open && (
         <div className="fixed inset-0 z-50 md:hidden">
           <button
-            aria-label={isNo ? "Lukk meny" : "Close menu"}
             onClick={() => setOpen(false)}
             className="absolute inset-0 bg-black/60"
           />
@@ -183,51 +188,32 @@ export function SiteHeader() {
                 {isNo ? "Meny" : "Menu"}
               </div>
               <button
-                type="button"
-                aria-label={isNo ? "Lukk" : "Close"}
                 onClick={() => setOpen(false)}
                 className="rounded-full border border-white/10 bg-white/5 p-2 text-white"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M6 6l12 12M18 6L6 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                ✕
               </button>
             </div>
 
             <div className="mt-6 grid gap-2">
               {NAV.map((item) => (
-                <div key={item.href}>
-                  <button
-                    type="button"
-                    onClick={() => handleNavigate(item.href)}
-                    className="block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
-                  >
-                    {item.label}
-                  </button>
-                </div>
+                <button
+                  key={item.href}
+                  onClick={() => handleNavigate(item.href)}
+                  className="block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                >
+                  {item.label}
+                </button>
               ))}
             </div>
 
             <div className="mt-6 border-t border-white/10 pt-6">
               <button
-                type="button"
                 onClick={() => {
                   setOpen(false);
                   router.push(getToggledLanguagePath());
                 }}
                 className="inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
-                aria-label={langAria}
               >
                 {isNo ? "English (EN)" : "Norsk (NO)"}
               </button>
