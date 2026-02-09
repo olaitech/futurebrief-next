@@ -65,13 +65,20 @@ export function HeroNo() {
           </div>
         </div>
 
-        <div className="mt-8 text-xs font-semibold tracking-wide text-white/80">
-          Laget av Kewin Olaisen · CEO 
+        <div className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-white/70 drop-shadow-[0_0_14px_rgba(124,58,237,0.35)]">
+  Kewin Olaisen · Systembygger og samarbeidspartner
+</div>
+
           <p className="mt-3 text-sm text-white/70 max-w-xl">
-  Jeg designer og bygger moderne nettsider og prototyper for enkeltpersoner og små team. Kontakt meg.
+  Jeg designer og bygger strategiske,{" "}
+  <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(168,85,247,0.25)]">
+    AI-klare
+  </span>{" "}
+  systemer – og bidrar i ambisiøse team som bygger skalerbare produkter.
 </p>
-        </div>
-      </div>
+
+  </div>
+    
     </section>
   );
 }
