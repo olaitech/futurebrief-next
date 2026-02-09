@@ -1,7 +1,7 @@
-// src/app/no/page.tsx
 import type { Metadata } from "next";
 
 import { HeroNo } from "@/components/sections/no/hero-no";
+import { TrustStrip } from "@/components/sections/trust-strip";
 import { AmbitionsSectionNo } from "@/components/sections/no/ambitions-no";
 import { FocusSectionNo } from "@/components/sections/no/focus-no";
 import { ContactSectionNo } from "@/components/sections/no/contact-no";
@@ -9,9 +9,10 @@ import { LampDivider } from "@/components/ui/lamp";
 import AmbientDivider from "@/components/ui/ambient-divider";
 
 export const metadata: Metadata = {
-  title: "FutureBrief – Praktiske AI-løsninger",
+  title: "Praktiske AI-løsninger, webdesign og produktidéer | FutureBrief",
   description:
-    "Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase.",
+    "FutureBrief bygger praktiske AI-løsninger, moderne nettsider og produktkonsepter i tidlig fase – strukturert og gjennomførbart.",
+
   alternates: {
     canonical: "https://www.futurebrief.net/no",
     languages: {
@@ -26,11 +27,14 @@ export default function NoPage() {
   return (
     <main className="bg-black">
       <h1 className="sr-only">
-        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i
-        tidlig fase
+        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase
       </h1>
 
       <HeroNo />
+
+      {/* Trust / Authority strip */}
+      <TrustStrip />
+
       <LampDivider height={220} />
 
       <AmbitionsSectionNo />

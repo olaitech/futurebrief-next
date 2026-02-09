@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Hero } from "@/components/sections/hero";
+import { TrustStrip } from "@/components/sections/trust-strip";
 import { LampDivider } from "@/components/ui/lamp";
 import { AmbitionsSection } from "@/components/sections/ambitions";
 import { FocusSection } from "@/components/sections/focus";
@@ -8,9 +9,10 @@ import { ContactSection } from "@/components/sections/contact";
 import AmbientDivider from "@/components/ui/ambient-divider";
 
 export const metadata: Metadata = {
-  title: "Practical AI, Web Design & Early Product Concepts",
+  title: "Practical AI, Web Design & Early Product Concepts | FutureBrief",
   description:
     "FutureBrief builds practical AI applications, clean web experiences, and early-stage product concepts designed for real-world use.",
+
   alternates: {
     canonical: "https://www.futurebrief.net",
     languages: {
@@ -30,6 +32,10 @@ export default function Page() {
       </h1>
 
       <Hero />
+
+      {/* Authority / Trust layer */}
+      <TrustStrip />
+
       <LampDivider height={220} />
 
       <AmbitionsSection />
