@@ -42,7 +42,7 @@ alternates: {
     siteName: "FutureBrief",
     title: "FutureBrief",
     description:
-      "Practical AI applications, web design, and early-stage product concepts.",
+      "FutureBrief builds practical AI applications, clean web design, and early-stage product concepts focused on real-world systems, prototypes, and future-facing platforms.",
     url: "https://futurebrief.net",
     images: {
       url: "/og.png",
