@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
@@ -78,7 +80,8 @@ export const metadata: Metadata = {
     default: "FutureBrief",
     template: "%s – FutureBrief",
   },
-  description: "Practical AI applications, web design, and early-stage product concepts.",
+  description:
+    "Practical AI applications, web design, and early-stage product concepts.",
   robots: {
     index: true,
     follow: true,
@@ -111,8 +114,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FutureBrief",
-    description: "Practical AI applications, web design, and early-stage product concepts.",
-    images: [{ url: "/og.png", alt: "FutureBrief - Practical AI, Web Design & Early Product Concepts" }],
+    description:
+      "Practical AI applications, web design, and early-stage product concepts.",
+    images: [
+      {
+        url: "/og.png",
+        alt: "FutureBrief - Practical AI, Web Design & Early Product Concepts",
+      },
+    ],
   },
   icons: {
     icon: [{ url: "/favicon.ico" }],
@@ -120,7 +129,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
@@ -133,6 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
