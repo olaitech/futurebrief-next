@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Personvern – FutureBrief",
+  title: "Personvern",
   description: "Informasjon om personvern på FutureBrief.",
 };
 

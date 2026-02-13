@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Insights | FutureBrief",
+  title: "Insights",
   description:
-    "Practical notes on building AI-enabled products, prototypes, and high-converting web experiences.",
+    "Practical notes, guides, and lessons learned from building AI-enabled products, scalable prototypes, and high-converting web experiences.",
   alternates: {
     canonical: "https://www.futurebrief.net/insights",
     languages: {
@@ -41,7 +41,67 @@ export default function Page() {
               A practical structure you can ship fast: clarity, proof, and a single conversion path.
             </p>
             <div className="mt-4 text-sm font-semibold text-white/70 group-hover:text-white">
-              Read → 
+              Read →
+            </div>
+          </Link>
+          <Link
+            href="/insights/stop-building-pages-start-building-systems"
+            className="group rounded-3xl border border-white/12 bg-white/5 p-6 backdrop-blur-xl transition hover:bg-white/10"
+          >
+            <div className="text-xs tracking-widest text-white/45">GUIDE</div>
+            <h2 className="mt-3 text-xl font-semibold text-white">
+              Stop Building Pages. Start Building Systems.
+            </h2>
+            <p className="mt-2 text-sm text-white/65">
+              Most business owners think they need a website. What they actually need is a system.
+            </p>
+            <div className="mt-4 text-sm font-semibold text-white/70 group-hover:text-white">
+              Read →
+            </div>
+          </Link>
+          <Link
+            href="/insights/what-makes-an-ai-landing-page-convert"
+            className="group rounded-3xl border border-white/12 bg-white/5 p-6 backdrop-blur-xl transition hover:bg-white/10"
+          >
+            <div className="text-xs tracking-widest text-white/45">GUIDE</div>
+            <h2 className="mt-3 text-xl font-semibold text-white">
+              What Makes an AI Landing Page Convert
+            </h2>
+            <p className="mt-2 text-sm text-white/65">
+              Clarity, structure, proof and one clear conversion path for AI products.
+            </p>
+            <div className="mt-4 text-sm font-semibold text-white/70 group-hover:text-white">
+              Read →
+            </div>
+          </Link>
+          <Link
+            href="/insights/why-most-ai-startups-build-the-wrong-website"
+            className="group rounded-3xl border border-white/12 bg-white/5 p-6 backdrop-blur-xl transition hover:bg-white/10"
+          >
+            <div className="text-xs tracking-widest text-white/45">GUIDE</div>
+            <h2 className="mt-3 text-xl font-semibold text-white">
+              Why Most AI Startups Build the Wrong Website
+            </h2>
+            <p className="mt-2 text-sm text-white/65">
+              Common structural and messaging mistakes AI startups make — and how to fix them.
+            </p>
+            <div className="mt-4 text-sm font-semibold text-white/70 group-hover:text-white">
+              Read →
+            </div>
+          </Link>
+          <Link
+            href="/insights/from-prototype-to-product-website-strategy-for-ai-founders"
+            className="group rounded-3xl border border-white/12 bg-white/5 p-6 backdrop-blur-xl transition hover:bg-white/10"
+          >
+            <div className="text-xs tracking-widest text-white/45">GUIDE</div>
+            <h2 className="mt-3 text-xl font-semibold text-white">
+              From Prototype to Product: Website Strategy for AI Founders
+            </h2>
+            <p className="mt-2 text-sm text-white/65">
+              A practical framework for AI founders moving from prototype to product and needing a website that supports growth.
+            </p>
+            <div className="mt-4 text-sm font-semibold text-white/70 group-hover:text-white">
+              Read →
             </div>
           </Link>
         </div>

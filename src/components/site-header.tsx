@@ -46,6 +46,8 @@ export function SiteHeader() {
       "/no/innsikt": "/insights",
       "/projects": "/no/projects",
       "/no/projects": "/projects",
+      "/systems": "/no/systemer",
+      "/no/systemer": "/systems",
     };
 
     // Håndter article-routes under insights/innsikt (gir fallback til index)

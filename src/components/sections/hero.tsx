@@ -1,4 +1,5 @@
 import ShaderBackground from "@/components/ui/shader-background";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -34,42 +35,51 @@ export function Hero() {
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/systems"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">Clear thinking</div>
             <div className="mt-1 text-sm text-white/70">
               Short briefs, no hype. Just useful structure.
             </div>
-          </div>
+          </Link>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/projects"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">Build-first</div>
             <div className="mt-1 text-sm text-white/70">
               Prototypes, landing pages, and proof-of-work.
             </div>
-          </div>
+          </Link>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/insights"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">Future utility</div>
             <div className="mt-1 text-sm text-white/70">
               Marketplaces, energy, and real-world systems.
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-white/70 drop-shadow-[0_0_14px_rgba(124,58,237,0.35)]">
-  Kewin Olaisen · Builder & Collaborator
-</div>
-
-          <p className="mt-3 text-sm text-white/70 max-w-xl">
-  I design and build strategic,{" "}
-  <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(168,85,247,0.25)]">
-    AI-ready
-  </span>{" "}
-  systems - contributing to ambitious teams building scalable products.
-</p>
-
+          Kewin Olaisen · Builder & Collaborator
         </div>
-    
+
+        <p className="mt-3 text-sm text-white/70 max-w-xl">
+          I design and build strategic,{" "}
+          <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(168,85,247,0.25)]">
+            AI-ready
+          </span>{" "}
+          systems - contributing to ambitious teams building scalable products.
+        </p>
+
+      </div>
+
     </section>
   );
 }

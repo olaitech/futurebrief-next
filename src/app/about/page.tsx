@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "About – FutureBrief",
-  description: "About FutureBrief.",
+  title: "About",
+  description: "FutureBrief is a build-first portfolio focusing on practical AI concepts, prototypes, and scalable digital systems for real-world workflows.",
 };
 
 export default function AboutPage() {

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ArticleLayout } from "@/components/sections/insights/ArticleLayout";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI-landingsside som faktisk konverterer | FutureBrief",
+  title: "AI-landingsside som faktisk konverterer",
   description:
     "Hvordan bygge en AI-landingsside som gjør neste steg åpenbart. Mindre støy, mer klarhet, tydelig retning.",
   alternates: {
@@ -84,6 +85,10 @@ export default function Page() {
       </p>
 
       <p>Start der.</p>
+
+      <p className="mt-12 pt-8 border-t border-white/5 text-sm text-white/50">
+        Dette er en sentral del av rammeverket for <Link href="/no/systemer" className="text-cyan-400 hover:underline decoration-cyan-400/30 underline-offset-4 transition-colors">AI-nettsidesystemer</Link>.
+      </p>
     </ArticleLayout>
   );
 }

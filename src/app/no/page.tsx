@@ -9,7 +9,7 @@ import { LampDivider } from "@/components/ui/lamp";
 import AmbientDivider from "@/components/ui/ambient-divider";
 
 export const metadata: Metadata = {
-  title: "Praktiske AI-løsninger, webdesign og produktidéer | FutureBrief",
+  title: "Praktiske AI-løsninger og produktidéer",
   description:
     "FutureBrief bygger praktiske AI-løsninger, moderne nettsider og produktkonsepter i tidlig fase – strukturert og gjennomførbart.",
 
@@ -26,9 +26,7 @@ export const metadata: Metadata = {
 export default function NoPage() {
   return (
     <main className="bg-black">
-      <h1 className="sr-only">
-        FutureBrief – Praktiske AI-løsninger, webdesign og produktidéer i tidlig fase
-      </h1>
+
 
       <HeroNo />
 

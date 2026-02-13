@@ -1,4 +1,5 @@
 import ShaderBackground from "@/components/ui/shader-background";
+import Link from "next/link";
 
 export function HeroNo() {
   return (
@@ -37,48 +38,57 @@ export function HeroNo() {
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/no/systemer"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">
               Klar tenkning
             </div>
             <div className="mt-1 text-sm text-white/70">
               Korte notater, uten hype. Kun nyttig struktur.
             </div>
-          </div>
+          </Link>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/projects"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">
               Bygg først
             </div>
             <div className="mt-1 text-sm text-white/70">
               Prototyper, landingssider og proof-of-work.
             </div>
-          </div>
+          </Link>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <Link
+            href="/insights"
+            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 block"
+          >
             <div className="text-sm font-semibold text-white">
               Fremtidig nytte
             </div>
             <div className="mt-1 text-sm text-white/70">
               Markedsplasser, energi og systemer i den virkelige verden.
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-white/70 drop-shadow-[0_0_14px_rgba(124,58,237,0.35)]">
-  Kewin Olaisen · Systembygger og samarbeidspartner
-</div>
+          Kewin Olaisen · Systembygger og samarbeidspartner
+        </div>
 
-          <p className="mt-3 text-sm text-white/70 max-w-xl">
-  Jeg designer og bygger strategiske,{" "}
-  <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(168,85,247,0.25)]">
-    AI-klare
-  </span>{" "}
-  systemer – og bidrar i ambisiøse team som bygger skalerbare produkter.
-</p>
+        <p className="mt-3 text-sm text-white/70 max-w-xl">
+          Jeg designer og bygger strategiske,{" "}
+          <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(168,85,247,0.25)]">
+            AI-klare
+          </span>{" "}
+          systemer – og bidrar i ambisiøse team som bygger skalerbare produkter.
+        </p>
 
-  </div>
-    
+      </div>
+
     </section>
   );
 }

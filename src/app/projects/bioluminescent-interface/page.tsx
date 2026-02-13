@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Bioluminescent Interface · R&D Showcase | FutureBrief",
+  title: "Bioluminescent Interface · R&D Showcase",
   description:
     "AI-inspired glassmorphism with glow layers and a fluid interface feel. An R&D showcase experiment built to explore visual systems without affecting the main site.",
   openGraph: {

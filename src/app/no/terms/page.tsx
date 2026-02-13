@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vilkår – FutureBrief",
+  title: "Vilkår",
   description: "Bruksvilkår for FutureBrief.",
 };
 

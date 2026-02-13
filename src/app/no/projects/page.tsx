@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ProjectsPage } from "@/components/sections/projects/ProjectsPage";
 
 export const metadata: Metadata = {
-  title: "Prosjekter | FutureBrief",
+  title: "Prosjekter",
   description:
-    "Utvalgte kundeprosjekter og eksperimentelle R&D-grensesnitt.",
+    "Utforsk utvalgte kundeprosjekter, eksperimentelle R&D-grensesnitt og tidlige produktkonsepter som utfordrer dagens digitale systemer.",
   alternates: {
     canonical: "https://www.futurebrief.net/no/projects",
     languages: {

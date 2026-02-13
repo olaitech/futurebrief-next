@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Ofte stilte spørsmål – FutureBrief",
+  title: "Ofte stilte spørsmål",
   description: "Ofte stilte spørsmål om FutureBrief.",
 };
 

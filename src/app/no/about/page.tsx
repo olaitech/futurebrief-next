@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Om – FutureBrief",
+  title: "Om",
   description:
-    "Om FutureBrief – praktiske AI-konsepter, prototyper og tidlig produktutvikling.",
+    "FutureBrief er et bygg-først-prosjekt med fokus på praktiske AI-løsninger, webdesign og tidlige produktkonsepter. Utforsk ideer for virkelige arbeidsflyter.",
 };
 
 export default function AboutNoPage() {

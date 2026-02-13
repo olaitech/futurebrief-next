@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ArticleLayout } from "@/components/sections/insights/ArticleLayout";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI landing pages that actually convert | FutureBrief",
+  title: "AI landing pages that actually convert",
   description:
     "How to build an AI landing page that makes the next step obvious. Less noise, more clarity, real direction.",
   alternates: {
@@ -84,6 +85,10 @@ export default function Page() {
       </p>
 
       <p>Start there.</p>
+
+      <p className="mt-12 pt-8 border-t border-white/5 text-sm text-white/50">
+        This is a key part of the <Link href="/systems" className="text-cyan-400 hover:underline decoration-cyan-400/30 underline-offset-4 transition-colors">AI Website Systems</Link> framework.
+      </p>
     </ArticleLayout>
   );
 }
