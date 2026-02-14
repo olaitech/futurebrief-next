@@ -11,8 +11,6 @@ type ProjectsPageProps = {
 export function ProjectsPage({ lang = "en" }: ProjectsPageProps) {
   return (
     <main className="relative min-h-screen bg-black overflow-hidden">
-      <h1 className="sr-only">{lang === "no" ? "Prosjekter" : "Projects"}</h1>
-
       {/* Hero/header beholdes som før */}
       <ProjectsHero lang={lang} />
 
@@ -160,11 +158,11 @@ export function ProjectsPage({ lang = "en" }: ProjectsPageProps) {
 
           {/* Coming soon / next blocks */}
           <section className="mx-auto max-w-6xl px-6 pb-24 text-center">
-  <div className="text-sm text-white/50 animate-soft-pulse">
-    {lang === "no" ? "Neste: prosjekt-blokker" : "Next: project blocks"}
-  </div>
-  <KineticDotsLoader />
-</section>
+            <div className="text-sm text-white/50 animate-soft-pulse">
+              {lang === "no" ? "Neste: prosjekt-blokker" : "Next: project blocks"}
+            </div>
+            <KineticDotsLoader />
+          </section>
 
         </div>
       </section>

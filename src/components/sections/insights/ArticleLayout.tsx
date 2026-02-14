@@ -21,8 +21,33 @@ export function ArticleLayout({
   const backHref = lang === "no" ? "/no/innsikt" : "/insights";
   const backLabel = lang === "no" ? "Tilbake til Insights" : "Back to Insights";
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description || title,
+    "datePublished": date,
+    "author": {
+      "@type": "Person",
+      "name": "Kewin Olaisen",
+      "url": "https://www.linkedin.com/in/kewin-olaisen-287204338"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "FutureBrief",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.futurebrief.net/logo-futurebrief.svg"
+      }
+    }
+  };
+
   return (
     <main className="relative min-h-screen bg-black overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,255,136,0.10)_0%,rgba(0,0,0,0)_55%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,120,255,0.08)_0%,rgba(0,0,0,0)_60%)]" />

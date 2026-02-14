@@ -1,6 +1,14 @@
 export const metadata = {
   title: "Vilkår",
   description: "Bruksvilkår for FutureBrief.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/no/terms",
+    languages: {
+      "en-US": "https://www.futurebrief.net/terms",
+      "nb-NO": "https://www.futurebrief.net/no/terms",
+      "x-default": "https://www.futurebrief.net/terms",
+    },
+  },
 };
 
 export default function TermsNoPage() {

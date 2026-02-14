@@ -1,0 +1,162 @@
+[1m
+============================================================[0m
+[1mSEO Audit for: http://127.0.0.1:3000[0m
+[1m============================================================
+[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/sitemap.xml[0m[0m
+[32m  ??? Sitemap exists (30 URLs)[0m
+[32m  ??? Norwegian (/no/) routes included in sitemap[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/robots.txt[0m[0m
+[32m  ??? robots.txt exists[0m
+[32m  ??? robots.txt references sitemap[0m
+[32m  ??? Checking 10 routes (static list)[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (43 chars)[0m
+[32m  ??? Meta description OK (130 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/no[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (52 chars)[0m
+[32m  ??? Meta description OK (127 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/no[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/projects[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (40 chars)[0m
+[32m  ??? Meta description OK (142 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/projects[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/about[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (46 chars)[0m
+[33m  ??? Title may contain duplicated brand: "About FutureBrief | AI Portfolio ??? FutureBrief"[0m
+[32m  ??? Meta description OK (140 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/about[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/insights[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (40 chars)[0m
+[32m  ??? Meta description OK (137 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/insights[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/systems[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (45 chars)[0m
+[32m  ??? Meta description OK (123 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/systems[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/no/systemer[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (46 chars)[0m
+[32m  ??? Meta description OK (123 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/no/systemer[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/insights/ai-landing-page-that-converts[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (52 chars)[0m
+[33m  ??? Description too short (107 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/insights/ai-landing-page-that-converts[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[32m  ??? Article JSON-LD present[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/insights/stop-building-pages-start-building-systems[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (58 chars)[0m
+[33m  ??? Description too short (92 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/insights/stop-building-pages-start-building-systems[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[32m  ??? Article JSON-LD present[0m
+[36m
+[1mChecking: http://127.0.0.1:3000/no/innsikt[0m[0m
+[32m  ??? HTTP 200[0m
+[32m  ??? Title OK (44 chars)[0m
+[33m  ??? Description too short (71 chars)[0m
+[32m  ??? Canonical matches: https://www.futurebrief.net/no/innsikt[0m
+[32m  ??? Hreflang alternates OK: en-US, nb-NO, x-default[0m
+[32m  ??? og:title present[0m
+[32m  ??? og:description present[0m
+[32m  ??? og:image absolute[0m
+[32m  ??? og:url present[0m
+[32m  ??? twitter:card present[0m
+[32m  ??? twitter:image absolute[0m
+[32m  ??? Single <h1> OK[0m
+[1m
+============================================================[0m
+[1mSEO Audit Complete[0m
+[1m============================================================
+[0m

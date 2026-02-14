@@ -196,7 +196,9 @@ function checkH1(doc) {
 
 function checkJsonLdArticle(doc, route) {
     const isInsightArticle =
-        route.startsWith("/insights/") && route !== "/insights" && !route.endsWith("/insights");
+        (route.startsWith("/insights/") || route.startsWith("/no/innsikt/")) &&
+        route !== "/insights" && route !== "/no/innsikt" &&
+        !route.endsWith("/insights") && !route.endsWith("/no/innsikt");
     if (!isInsightArticle) return true;
 
     const scripts = [...doc.querySelectorAll('script[type="application/ld+json"]')];

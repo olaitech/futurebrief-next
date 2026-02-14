@@ -1,6 +1,14 @@
 export const metadata = {
   title: "Personvern",
   description: "Informasjon om personvern på FutureBrief.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/privacy",
+    languages: {
+      "en-US": "https://www.futurebrief.net/privacy",
+      "nb-NO": "https://www.futurebrief.net/no/privacy",
+      "x-default": "https://www.futurebrief.net/privacy",
+    },
+  },
 };
 
 export default function PrivacyNoPage() {

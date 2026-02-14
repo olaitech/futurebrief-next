@@ -1,6 +1,14 @@
 export const metadata = {
-  title: "About",
+  title: "About FutureBrief | AI Portfolio",
   description: "FutureBrief is a build-first portfolio focusing on practical AI concepts, prototypes, and scalable digital systems for real-world workflows.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/about",
+    languages: {
+      "en-US": "https://www.futurebrief.net/about",
+      "nb-NO": "https://www.futurebrief.net/no/about",
+      "x-default": "https://www.futurebrief.net/about",
+    },
+  },
 };
 
 export default function AboutPage() {

@@ -1,7 +1,15 @@
 export const metadata = {
-  title: "Om",
+  title: "Om FutureBrief | AI-portefølje",
   description:
     "FutureBrief er et bygg-først-prosjekt med fokus på praktiske AI-løsninger, webdesign og tidlige produktkonsepter. Utforsk ideer for virkelige arbeidsflyter.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/no/about",
+    languages: {
+      "en-US": "https://www.futurebrief.net/about",
+      "nb-NO": "https://www.futurebrief.net/no/about",
+      "x-default": "https://www.futurebrief.net/about",
+    },
+  },
 };
 
 export default function AboutNoPage() {

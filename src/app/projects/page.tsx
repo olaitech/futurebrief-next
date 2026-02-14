@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ProjectsPage } from "@/components/sections/projects/ProjectsPage";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Projects | AI Case Studies",
   description:
     "Explore a selection of client projects, experimental R&D interfaces, and early-stage product concepts exploring the future of digital systems.",
   alternates: {

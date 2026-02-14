@@ -1,8 +1,16 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "FAQs",
+  title: "FAQs | AI Product & Web Strategy Questions",
   description: "Frequently asked questions about FutureBrief.",
+  alternates: {
+    canonical: "https://www.futurebrief.net/faqs",
+    languages: {
+      "en-US": "https://www.futurebrief.net/faqs",
+      "nb-NO": "https://www.futurebrief.net/no/faqs",
+      "x-default": "https://www.futurebrief.net/faqs",
+    },
+  },
 };
 
 const faqs = [

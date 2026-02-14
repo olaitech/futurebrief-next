@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Innsikt",
+  title: "Innsikt | AI-nettstedsstrategi",
   description:
     "Praktiske tekster om prototyper, validering og AI-klare webopplevelser.",
   alternates: {
