@@ -78,7 +78,9 @@ export function ContactSection() {
               </a>
             </div>
 
-            <div className="mt-12 text-sm text-white/40">© 2026 Built by FutureBrief</div>
+            <div className="mt-12 text-sm text-white/40">
+              © {new Date().getFullYear()} Built by FutureBrief
+            </div>
           </div>
         </div>
       </div>
