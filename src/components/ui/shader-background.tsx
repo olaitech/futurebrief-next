@@ -218,7 +218,7 @@ export default function ShaderBackground({
       window.removeEventListener("resize", onResize);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [respectReducedMotion]);
+  }, [respectReducedMotion, fsSource, vsSource]);
 
   return (
     <canvas
