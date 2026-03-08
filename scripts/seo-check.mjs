@@ -156,15 +156,29 @@ function checkOpenGraph(doc) {
 
     let ok = true;
 
-    if (!ogTitle) (fail("Missing og:title"), (ok = false));
-    else pass("og:title present");
+    if (!ogTitle) {
+        fail("Missing og:title");
+        ok = false;
+    } else {
+        pass("og:title present");
+    }
 
-    if (!ogDesc) (fail("Missing og:description"), (ok = false));
-    else pass("og:description present");
+    if (!ogDesc) {
+        fail("Missing og:description");
+        ok = false;
+    } else {
+        pass("og:description present");
+    }
 
-    if (!ogImage) (fail("Missing og:image"), (ok = false));
-    else if (!isAbsoluteUrl(ogImage)) (fail(`og:image is not absolute: ${ogImage}`), (ok = false));
-    else pass(`og:image absolute`);
+    if (!ogImage) {
+        fail("Missing og:image");
+        ok = false;
+    } else if (!isAbsoluteUrl(ogImage)) {
+        fail(`og:image is not absolute: ${ogImage}`);
+        ok = false;
+    } else {
+        pass(`og:image absolute`);
+    }
 
     if (!ogUrl) warn("Missing og:url");
     else pass("og:url present");
